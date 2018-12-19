@@ -1,0 +1,256 @@
+
+/*Fond blanc des saisies*/
+fieldset
+{
+  
+    background-color: white;  
+    text-align: center;
+}
+
+/*les images de fond*/
+header
+{
+
+    background-image: url("../Images/test_dodo.png"); 
+    
+    background-size: 100%;  
+    
+    min-height: 200px;
+    min-width: 900px;
+    
+    padding: 0;
+    margin: 0;
+    background-repeat: no-repeat;
+
+ 
+}
+
+footer
+{
+    background-image: url("../Images/fond_blue.png"); 
+    
+    background-size: 100%;  
+    
+
+    background-repeat: no-repeat;
+}
+
+body
+{
+    
+    background-image: url("../Images/bois_noir.JPG"); 
+    
+    background-size: 100%;  
+    
+    
+
+    background-repeat: no-repeat ( )   
+    background-position: center;
+    
+
+}
+
+
+p
+{
+    text-align: center;
+
+    font-weight: bold;
+}
+
+iframe
+{
+    scrolling: no;
+    height: 600px;
+    border: 1px;
+}
+
+/*Pour le titre */
+h1
+{
+    text-align: center;
+}
+
+h2
+{
+    text-align: left;
+}
+
+/*Pour l'image*/
+.imageflottante
+{
+    text-align: center;
+}
+
+/*Pour le soulignement*/
+div
+{
+    /*border-bottom: 1.5px solid black;*/
+}
+
+/* Liens par défaut (non survolés) */
+a
+{
+   text-decoration: none;
+   color: black;
+   font-style: italic;
+}
+
+
+.produit
+{
+    text-decoration: underline;
+    text-align: left;
+}
+
+span
+{
+    text-decoration: underline;
+    text-align: top;
+}
+
+/*=====================================================  */
+/* Pour le tableau                                 */
+/*=====================================================  */
+
+#catalogue
+{
+    border: medium solid black;
+    border-collapse: collapse;
+    width: auto;
+    margin: auto; /*Pour centrer le tableau */
+
+}
+
+#catalogue td, th /* Mettre une bordure sur les td ET les th */
+{
+
+    border: 1px solid black;
+
+}
+
+/*Pour la couleur du tableau*/
+#catalogue th
+{
+    font-family: monospace;
+    border: thin solid black;
+    width: auto;/*Pour la taille des th*/
+    padding: 5px; /*Espace dans les carées*/
+    background-color: rgb(170,217,255); /* Le fond du tableau sera rouge claire */
+    color: black; /* Le tableau seront écrit en noir  */
+    /*background-image: url(sky.jpg);*/ /*Pour l'mage de fond */
+}
+
+
+
+#catalogue td
+{
+    text-align: center; /*Pour centrer le texte du tableau */
+    font-family: sans-serif;
+    border: thin solid black;
+    width: auto;
+    padding: 5px;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+table
+{
+    text-align: center;
+    position: top;
+}
+
+
+/*=====================================================  */
+/* Pour les puces                         */
+/*=====================================================  */
+
+li
+{
+    /*Pouur cacher le point des puces*/
+    list-style-type: none;
+
+}
+
+#lespuces
+{
+    border: medium solid black;
+    border-collapse: collapse;
+    width: auto;
+    margin: auto; /*Pour centrer le tableau */
+
+}
+
+#lespuces td, th /* Mettre une bordure sur les td ET les th */
+{
+
+    border: 1px solid black;
+
+}
+
+#lespuces th
+{
+
+    font-family: monospace;
+    border: thin solid black;
+    width: auto;/*Pour la taille des th*/
+    padding: 5px;
+    background-color: rgb(113,184,255); ; /* Le fond du bandeau sera bleu */
+    color: black; /* Le tableau seront écrit en noir  */
+
+}
+
+#lespuces td
+{
+
+
+    text-align: center; /*Pour centrer le texte du tableau */
+    font-family: sans-serif;
+    border: thin solid black;
+    width: auto;
+    padding: 5px;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+/*=====================================================  */
+/* Pour la mise en forme                         */
+/*=====================================================  */
+form,body,section,fieldset
+{
+    /*border-top: 1.5px solid black;*/
+    text-align: center ;
+    width:     50%;/*Espoace dedans les carrés*/
+    min-width: 700px;
+    margin: auto;/*Pour centrer automatiquement*/
+    display: table-cell; /* comportement visuel de cellule */
+    vertical-align: middle;
+}
+
+/*=====================================================  */
+/* Pour le formulaire                         */
+/*=====================================================  */
+/*
+label
+{
+    display: block;
+    width: 200px;
+    float: left;
+    text-align: center ;
+
+}
+*/
+/*=====================================================  */
+/* Pour la video                        */
+/*=====================================================  */
+
+
+video
+{
+  /*
+  width: 500px;
+  height: 400px;
+  */
+   width: 1263px; 
+  
+}
