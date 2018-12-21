@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-    </head>
-    <body>
-    	
-		<h3>Votre inscription a été prise en compte !</h3>
-
-		<p><?php echo anchor('utilisateur/contenu/accueil', 'Revenir à la page d\'acceuil'); ?></p>
-		</body>
-</html>
+<enregistrer class="container-fluid enregistrer">
+        <div class="alert alert-success" role="alert">Votre inscription a été prise en compte !</div>
+        <p><?php echo anchor('utilisateur/contenu/accueil', 'Revenir à la page d\'acceuil'); ?></p>
+</enregistrer>

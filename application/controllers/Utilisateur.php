@@ -21,7 +21,7 @@ public function contenu($id) {
 	switch ($id) {
 		case 'catalogue':
 			$this->load->view('v_bandeau');
-			
+
 		$data['donnees']=$this->main_model->afficheProduits();
 		$data['test']=$this->main_model->lesreferences();
 		$this->load->view('v_catalogue',$data);
@@ -39,34 +39,35 @@ public function contenu($id) {
 
 		case 'connecter':
 			$this->load->view('v_bandeau');
-		
+
 			$data['login'] = $this->session->userdata('login');
             $this->load->view('v_connecter',$data);
-			
+
             break;
-			
+
 		case 'connection':
-		
-		
+
+
            $loginSaisie =$this->input->post('login');
            $pwdSaisie = $this->input->post('pwd');
-		   
+
 		   $data['tab']=$this->main_model->userLogin($loginSaisie,$pwdSaisie);
 		   if (count($data['tab']) > 0)
 		   {
+         $this->load->view('v_bandeau');
 			  // ok bon login/pwd
 			$_SESSION['login']= $loginSaisie;
 			$_SESSION['pwd']= $pwdSaisie;
-			
+
 		   }
 		   else{
-			   
-			   echo "ll";
+         $this->load->view('v_bandeau');
+			   //echo "ll";
 			   // mauvais login
 			   $data['erreur'] = 'Aucun compte ne correspond à vos identifiants ';
 			   $this->load->view('v_connecter',$data);
 		   }
-		   $this->load->view('v_bandeau');
+
             break;
 		case 'deconnecter':
 			session_unset();
@@ -74,8 +75,9 @@ public function contenu($id) {
 			$this->load->view('v_bandeau');
 			$this->load->view('v_accueil');
 			break;
-			
+
 		case 'admin':
+      $this->load->view('v_entete');
 			$this->load->view('v_bandeau');
 			$this->load->view('v_admin');
 			break;
@@ -97,9 +99,9 @@ public function contenu($id) {
 
 	}
 
-	
-	
-	
+
+
+
 	 public function inscription()
         {
                 $this->load->helper(array('form', 'url'));
@@ -107,12 +109,12 @@ public function contenu($id) {
                 $this->load->library('form_validation');
 
                 $this->form_validation->set_rules('login', 'Login', 'required');
-                $this->form_validation->set_rules('pwd', 'Mot de Passe', 'required');    
+                $this->form_validation->set_rules('pwd', 'Mot de Passe', 'required');
                 $this->form_validation->set_rules('rue', 'Rue', 'required');
                 $this->form_validation->set_rules('numRue', 'NumRue', 'required');
                 $this->form_validation->set_rules('ville', 'Ville', 'required');
                 $this->form_validation->set_rules('codePostal', 'Code Postal', 'required');
-                            
+
 
                 if ($this->form_validation->run() == FALSE)
                 {
@@ -122,9 +124,10 @@ public function contenu($id) {
                         $this->load->view('v_entete');
                         $this->load->view('v_bandeau');
                         $this->load->view('v_admin');
+                        $this->load->view('v_finPage');
                 }
                 else
-                {       
+                {
                         $this->load->database();
                         $this->load->helper('url_helper');
                         $this->load->helper('form');
@@ -132,6 +135,8 @@ public function contenu($id) {
                         $this->load->view('v_entete');
                         $this->load->view('v_bandeau');
                         $this->load->view('v_enregistrer');
+                        // Bug à régler : "la fin de page se tire !" $this->load->view('v_finPage');
+                        $this->load->view('v_finPage');
 
                         $data = array(
                         //nom bdd -> Nom de la variable
@@ -142,10 +147,10 @@ public function contenu($id) {
                         'ville' => $this->input->post('ville'),
                         'codePostal' => $this->input->post('codePostal')
                         );
-                        //Transfering data to Model
+                        //Transfere data au Model
                         $this->main_model->enregistreAcheteur($data);
                         $data['message'] = 'Inscription effectuée';
-                        //Loading View
+                        //chargement de la View
                         $this->load->view('v_admin', $data);
 
                 }
@@ -153,6 +158,3 @@ public function contenu($id) {
         }
 
 }
-	
-	
-	
