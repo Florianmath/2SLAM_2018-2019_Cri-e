@@ -20,7 +20,7 @@ class Main_model extends CI_Model {
         $code="aut";
         */
         //Requete
-        $sql=$this->db->conn_id->prepare ("SELECT nomEspece FROM espece");
+        $sql=$this->db->conn_id->prepare ("SELECT IdLot, nomBateau, nomEspece, specification, libellePresentation, LibelleQualite, poidsBrutLot, prixDepart, prixEncheresMax, dateEnchere, heureDebutEnchere, codeEtat FROM lot, bateau, espece, peche, taille, presentation, qualite WHERE bateau.IdBateau = lot.IdBateau AND espece.IdEspece = lot.IdEspece AND taille.IdTaille = lot.IdTaille AND presentation.IdPresentation = lot.IdPresentation AND qualite.IdQualite = lot.IdQualite");
         $sql->execute();
         $donnees=$sql->fetchAll();//Execution total
         //ferme la connexion
