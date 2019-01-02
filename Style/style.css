@@ -1,112 +1,117 @@
+@charset "UTF-8";
 
-/*Fond blanc des saisies*/
-fieldset
-{
-  
-    background-color: white;  
-    text-align: center;
+body, html {
+  padding: 0;
+  margin: 0;
 }
 
-/*les images de fond*/
-header
-{
-
-    background-image: url("../Images/test_dodo.png"); 
-    
-    background-size: 100%;  
-    
-    min-height: 200px;
-    min-width: 900px;
-    
-    padding: 0;
-    margin: 0;
-    background-repeat: no-repeat;
-
- 
+body {
+  font-family: cursive; 
 }
 
-footer
-{
-    background-image: url("../Images/fond_blue.png"); 
-    
-    background-size: 100%;  
-    
-
-    background-repeat: no-repeat;
+a, a:hover {
+  text-decoration: none;
 }
 
-body
-{
-    
-    background-image: url("../Images/bois_noir.JPG"); 
-    
-    background-size: 100%;  
-    
-    
-
-    background-repeat: no-repeat ( )   
-    background-position: center;
-    
-
+.container-fluid {
+  padding: 0;
+  line-height: 0;
 }
 
+/* header */
 
-p
-{
-    text-align: center;
-
-    font-weight: bold;
+.header {
+  /*background-image: url("Images/Menu_head.png");*/
+  /*background-color: #0C8AE8;*/
+  height: 70px;
+  line-height: 70px;
+  background-image: url("../Images/fond_blue.png");
+  background-size: 100%;
 }
 
-iframe
-{
-    scrolling: no;
-    height: 600px;
-    border: 1px;
+.logo {
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+  float: left;
 }
 
-/*Pour le titre */
-h1
-{
-    text-align: center;
+.menu {
+  float: right;
 }
 
-h2
-{
-    text-align: left;
+.menu a {
+  color: #ffffff;
+  margin-right: 20px;
 }
 
-/*Pour l'image*/
-.imageflottante
-{
-    text-align: center;
+.menu a:hover{
+  color:#0D58FF;
 }
 
-/*Pour le soulignement*/
-div
-{
-    /*border-bottom: 1.5px solid black;*/
+/* bannière */
+
+.banner {
+  width: 100%;
+  max-width: 100%;
+}
+/* video */
+.ban {
+  width: 100%;
+  max-width: 100%;
+  position: fixed;
 }
 
-/* Liens par défaut (non survolés) */
-a
-{
-   text-decoration: none;
-   color: black;
-   font-style: italic;
+.ban video {
+
+  width: 100%;
+  max-width: 100%;
+
 }
 
 
-.produit
-{
-    text-decoration: underline;
-    text-align: left;
+.inner-banner {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  text-align: center;
 }
 
-span
-{
-    text-decoration: underline;
-    text-align: top;
+.inner-banner h2 {
+  color: #ffffff;
+}
+
+.inner-banner h1 {
+  color: #ffffff;
+}
+
+/* footer */
+
+.footer {
+  height: 70px;
+  line-height: 70px;
+  background-image: url("../Images/fond_blue.png");
+  background-size: 100%;
+  /* Pour ancrer en bas de page*/
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0
+}
+
+.footerC {
+  color: #ffffff;
+}
+
+
+/* enregistrer */
+
+.login {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  text-align: center;
 }
 
 /*=====================================================  */
@@ -161,96 +166,17 @@ table
 }
 
 
-/*=====================================================  */
-/* Pour les puces                         */
-/*=====================================================  */
-
-li
+body
 {
-    /*Pouur cacher le point des puces*/
-    list-style-type: none;
-
+  text-align: center ;
+  min-width: 700px;
+  margin: auto;/*Pour centrer automatiquement*/
+    
 }
 
-#lespuces
-{
-    border: medium solid black;
-    border-collapse: collapse;
-    width: auto;
-    margin: auto; /*Pour centrer le tableau */
-
-}
-
-#lespuces td, th /* Mettre une bordure sur les td ET les th */
-{
-
-    border: 1px solid black;
-
-}
-
-#lespuces th
-{
-
-    font-family: monospace;
-    border: thin solid black;
-    width: auto;/*Pour la taille des th*/
-    padding: 5px;
-    background-color: rgb(113,184,255); ; /* Le fond du bandeau sera bleu */
-    color: black; /* Le tableau seront écrit en noir  */
-
-}
-
-#lespuces td
-{
-
-
-    text-align: center; /*Pour centrer le texte du tableau */
-    font-family: sans-serif;
-    border: thin solid black;
-    width: auto;
-    padding: 5px;
-    text-align: center;
-    background-color: #ffffff;
-}
-
-/*=====================================================  */
-/* Pour la mise en forme                         */
-/*=====================================================  */
-form,body,section,fieldset
-{
-    /*border-top: 1.5px solid black;*/
-    text-align: center ;
-    width:     50%;/*Espoace dedans les carrés*/
-    min-width: 700px;
-    margin: auto;/*Pour centrer automatiquement*/
-    display: table-cell; /* comportement visuel de cellule */
-    vertical-align: middle;
-}
-
-/*=====================================================  */
-/* Pour le formulaire                         */
-/*=====================================================  */
-/*
 label
 {
-    display: block;
-    width: 200px;
-    float: left;
-    text-align: center ;
-
-}
-*/
-/*=====================================================  */
-/* Pour la video                        */
-/*=====================================================  */
-
-
-video
-{
-  /*
-  width: 500px;
-  height: 400px;
-  */
-   width: 1263px; 
+  width: 10%;
+  float: center-left;
   
 }
