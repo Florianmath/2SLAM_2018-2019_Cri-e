@@ -1,45 +1,62 @@
 <div id="bandeau">
 
-<header>
+<header class="container-fluid header">
+
+	<div class="container">
+
 <!-- Image-->
+	<!-- <ul id="menu">
+			<table id="lespuces"> -->
+<!-- <img src="<?php echo base_url('Images/Menu.png');?>" /> -->
+					 <a href="<?php echo site_url (); ?>" class="logo"> La Criée de Cornouaille </a>
+					<nav class="menu">
+					<a href ="<?php echo site_url (); ?>"> Accueil </a>
 
-</div>
-
-
-	<ul id="menu">
-		<table id="lespuces">
-			<tr>
-				<th>
-					<li><a href ="<?php echo site_url (); ?>"> Accueil </a></li>
-				</th>
 				<!---->
-				<th>
-					<li><a href ="<?php echo site_url ('utilisateur/contenu/catalogue'); ?>">Les poissons</a></li>
-				</th>
+
+					<a href ="<?php echo site_url ('utilisateur/contenu/catalogue'); ?>">Les poissons</a>
+
 				<!---->
-				<th>
-					<li><a href ="<?php echo site_url ('utilisateur/contenu/panier'); ?>">Voir mon panier</a></li>
-				</th>
+
+					<a href ="<?php echo site_url ('utilisateur/contenu/panier'); ?>">Voir mon panier</a>
+
 				<!---->
 				<?php if (!isset($_SESSION['login']) && !isset($_SESSION['pwd']))
 				{ ?>
-				<th>
-	                <li><a href ="<?php echo site_url ('utilisateur/contenu/connecter'); ?>">Se connecter</a></li>
-	            </th>
-				
-				<th>
-					<li><a href ="<?php echo site_url ('utilisateur/contenu/admin'); ?>">S'incrire</a></li>
-				</th>
+
+	        		<a href ="<?php echo site_url ('utilisateur/contenu/connecter'); ?>">Se connecter</a>
+
+
+
+					<a href ="<?php echo site_url ('utilisateur/contenu/admin'); ?>">S'inscrire</a>
+
+
 				<?php }
 				else
 				{ ?>
-					<th>
-						<li><a href ="<?php echo site_url ('utilisateur/contenu/deconnecter'); ?>">Se Deconnecter</a></li>
-					</th>
+					<?php if ($_SESSION['login'] == 'administrateur' )
+					{ ?>
+
+						<a href ="<?php echo site_url ('utilisateur/contenu/administrer'); ?>">Administrer</a>
+
+						<a href ="<?php echo site_url ('utilisateur/contenu/ajouter'); ?>">Ajouter des données</a>
+
+						<a href ="<?php echo site_url ('utilisateur/contenu/deconnecter'); ?>">Se Deconnecter</a>
+
+
+					<?php }
+					else
+					{ ?>
+						<a href ="<?php echo site_url ('utilisateur/contenu/deconnecter'); ?>">Se Deconnecter</a>
+					<?php } ?>
+
 				<?php } ?>
-				
+
 				<!---->
-			</tr>
-		</table>
-	</ul>
+
+		<!-- </table>
+	</ul> -->
+		</nav>
+	</div>
 </header>
+</div>

@@ -31,24 +31,24 @@
 	{
 		echo 'Bonjour  '.$login;
 	}
-     
-     
+
+
     /*
-	if ($this->session->flashdata('noconnect')) 
+	if ($this->session->flashdata('noconnect'))
      echo "<div class=\"alert alert-error\">
        <button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>
       <strong>" . $this->session->flashdata('noconnect') . "<strong>
      </div>";
 
 
-     echo "Bienvenue ",$data['login']; ?>  
+     echo "Bienvenue ",$data['login']; ?>
      <a href="deconnexion">Déconnexion</a> ?>
     */
 
      if (isset($erreur))
 		  echo $erreur;
-	
-		
+
+
 
      ?>
 
