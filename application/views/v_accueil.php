@@ -7,7 +7,7 @@
 			<!-- bannière -->
 			<section class="container-fluid banner">
 			<div class="ban">
-				<video src="<?php echo base_url('Images/2.mp4');?>" type="video/mp4" autoplay="true" loop="true" muted="true" />
+			<video src="<?php echo base_url('Images/2.mp4');?>" type="video/mp4" autoplay="true" loop="true" muted="true" />
 			</div>
 			<div class="inner-banner">
 				<h1 id="titre">Bienvenue sur le site de la Criée</h1>
