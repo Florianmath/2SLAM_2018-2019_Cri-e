@@ -18,6 +18,8 @@
 
 				<!---->
 
+				
+
 					<a href ="<?php echo site_url ('utilisateur/contenu/panier'); ?>">Voir mon panier</a>
 
 				<!---->
@@ -27,8 +29,14 @@
 	        		<a href ="<?php echo site_url ('utilisateur/contenu/connecter'); ?>">Se connecter</a>
 
 
+	    
+
 
 					<a href ="<?php echo site_url ('utilisateur/contenu/admin'); ?>">S'inscrire</a>
+
+					
+
+
 
 
 				<?php }
@@ -41,12 +49,21 @@
 
 						<a href ="<?php echo site_url ('utilisateur/contenu/ajouter'); ?>">Ajouter des données</a>
 
+						<a href ="<?php echo site_url ('utilisateur/contenu/chat'); ?>">Le chat</a>
+						
+
+
+
+
+
 						<a href ="<?php echo site_url ('utilisateur/contenu/deconnecter'); ?>">Se Deconnecter</a>
 
 
 					<?php }
 					else
 					{ ?>
+						<a href ="<?php echo site_url ('utilisateur/contenu/chat'); ?>">Le chat</a>
+						<a href ="<?php echo site_url ('utilisateur/contenu/monCompte'); ?>">Mon compte</a>
 						<a href ="<?php echo site_url ('utilisateur/contenu/deconnecter'); ?>">Se Deconnecter</a>
 					<?php } ?>
 

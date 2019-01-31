@@ -2,6 +2,8 @@
 echo '<div class="alert alert-warning" role="alert">';
 echo validation_errors(); ?> </div>
 
+<h3> Veuillez remplir les informations concernant les libellés ci-dessous, PUIS le lot. </h3>
+<p> <i>Les données peuvent prendre quelques secondes à s'implanter, veuillez patientez entre chaque saisies.</i> </p>
 <form method="post" action="<?php echo site_url ('utilisateur/enregistreBateau'); ?>">
                 <p>
                   Enregistrer un nouveau bateau :
@@ -61,99 +63,6 @@ echo validation_errors(); ?> </div>
                   </p>
 </form>
 
-<form method="post" action="<?php echo site_url ('utilisateur/enregistreLot'); ?>">
-                <p>
-                  Enregistrer un lot :
-                    <br/><br>
-                    <label for="IdLot">L'Id du lot  </label>
-                    <input type="text" name="IdLot"/> &nbsp &nbsp
-
-                    <select name="IdEspece">
-                    <?php
-                    foreach ($espece as $row) {
-                        echo '<option value='.$row["IdEspece"].'>'.$row["IdEspece"].'</option>';
-                    }?>
-                    </select>&nbsp &nbsp
-
-                    <select name="IdBateau">
-                    <?php
-                    foreach ($bat as $row) {
-                        echo '<option value='.$row["IdBateau"].'>'.$row["IdBateau"].'</option>';
-                    }?>
-                    </select>&nbsp &nbsp
-
-                    <select name="datePeche">
-                    <?php
-                    foreach ($peche as $row) {
-                        echo '<option value='.$row["datePeche"].'>'.$row["datePeche"].'</option>';
-                    }?>
-                    </select>&nbsp &nbsp
-
-                    <select name="IdTaille">
-                    <?php
-                    foreach ($taille as $row) {
-                        echo '<option value='.$row["IdTaille"].'>'.$row["IdTaille"].'</option>';
-                    }?>
-                    </select>&nbsp &nbsp
-
-                    <select name="IdPresentation">
-                    <?php
-                    foreach ($presentation as $row) {
-                        echo '<option value='.$row["IdPresentation"].'>'.$row["IdPresentation"].'</option>';
-                    }?>
-                    </select>&nbsp &nbsp
-
-                    <select name="IdBac">
-                    <?php
-                    foreach ($bac as $row) {
-                        echo '<option value='.$row["IdBac"].'>'.$row["IdBac"].'</option>';
-                    }?>
-                    </select>&nbsp &nbsp
-
-                    <select name="IdAcheteur">
-                    <?php
-                    foreach ($acheteur as $row) {
-                        echo '<option value='.$row["IdAcheteur"].'>'.$row["IdAcheteur"].'</option>';
-                    }?>
-                    </select>&nbsp &nbsp
-
-                    <select name="IdQualite">
-                    <?php
-                    foreach ($qualite as $row) {
-                        echo '<option value='.$row["IdQualite"].'>'.$row["IdQualite"].'</option>';
-                    }?>
-                    </select>&nbsp &nbsp
-
-                    <label for="poidsBrutLot">Le poids Brut  :   </label>
-                    <input type="text" name="poidsBrutLot"/> &nbsp &nbsp 
-
-                    <label for="prixPlancher">Prix planché :   </label>
-                    <input type="text" name="prixPlancher"/> &nbsp &nbsp
-
-                    <label for="prixDepart">Prix de départ : </label>
-                    <input type="text" name="prixDepart"/> &nbsp &nbsp
-
-                    <label for="prixActuel">prix Actuel : </label>
-                    <input type="text" name="prixActuel"/> &nbsp &nbsp
-
-                    <label for="prixEncheresMax">Prix de l'enchère max : </label>
-                    <input type="text" name="prixEncheresMax"/> &nbsp &nbsp
-
-                    <label for="dateEnchere">Date de l'enchère : </label>
-                    <input type="date" name="dateEnchere"/> &nbsp &nbsp
-
-                    <label for="dateHeureFin">Date de fin : </label>
-                    <input type="date" name="dateHeureFin"/> &nbsp &nbsp
-
-                    <label for="IdFacture">Id de la facture : </label>
-                    <input type="text" name="IdFacture"/> &nbsp &nbsp 
-
-
-                    <input class="btn btn-large btn-primary" type="submit" value="Valider" />
-                    <input class="btn btn-large btn-primary" type="reset" value="Effacer" />
-                  </p>
-</form>
-
 <form method="post" action="<?php echo site_url ('utilisateur/enregistrePresentation'); ?>">
                 <p>
                   Enregistrer une nouvelle présentation de lot :
@@ -178,3 +87,118 @@ echo validation_errors(); ?> </div>
 
 
 </form>
+
+
+<form method="post" action="<?php echo site_url ('utilisateur/enregistreLot'); ?>">
+                <p>
+                 <!-- Enregistrer un lot :
+                    <br/><br>
+                    <label for="IdLot">L'Id du lot  </label>
+                    <input type="text" name="IdLot"/> &nbsp &nbsp-->
+
+                    Enregistrer l'espèce : 
+
+                    <select name="IdEspece">
+                    <?php
+                    foreach ($espece as $row) {
+                        echo '<option value='.$row["IdEspece"].'>'.$row["IdEspece"].'</option>';
+                    }?>
+                    </select>&nbsp &nbsp
+
+                    Enregistrer un bateau : 
+
+                    <select name="IdBateau">
+                    <?php
+                    foreach ($bat as $row) {
+                        echo '<option value='.$row["IdBateau"].'>'.$row["IdBateau"].'</option>';
+                    }?>
+                    </select>&nbsp &nbsp
+
+                    Enregistrer date de la pèche : 
+
+                    <select name="datePeche">
+                    <?php
+                    foreach ($peche as $row) {
+                        echo '<option value='.$row["datePeche"].'>'.$row["datePeche"].'</option>';
+                    }?>
+                    </select>&nbsp &nbsp
+
+                    Enregistrer la taille : 
+
+                    <select name="IdTaille">-->
+                    <?php
+                    foreach ($taille as $row) {
+                        echo '<option value='.$row["IdTaille"].'>'.$row["IdTaille"].'</option>';
+                    }?>
+                    </select>&nbsp &nbsp
+
+                     Enregistrer la présentation : 
+
+                    <select name="IdPresentation">
+                    <?php
+                    foreach ($presentation as $row) {
+                        echo '<option value='.$row["IdPresentation"].'>'.$row["IdPresentation"].'</option>';
+                    }?>
+                    </select>&nbsp &nbsp
+
+                    Enregistrer le bac : 
+
+                    <select name="IdBac"> 
+                    <?php
+                    foreach ($bac as $row) {
+                        echo '<option value='.$row["IdBac"].'>'.$row["IdBac"].'</option>';
+                    }?>
+                    </select>&nbsp &nbsp
+
+                   Acheteur par défaut (à ne pas remplir) : 
+
+                    <select name="IdAcheteur">
+                    <?php
+                    foreach ($acheteur as $row) {
+                        echo '<option value='.$row["IdAcheteur"].'>'.$row["IdAcheteur"].'</option>';
+                    }?>
+                    </select>&nbsp &nbsp
+
+                    <!-- Enregistrer la qualité : 
+
+                    <select name="IdQualite">-->
+                    <?php
+                  /*  foreach ($qualite as $row) {
+                        echo '<option value='.$row["IdQualite"].'>'.$row["IdQualite"].'</option>';
+                    }?>
+                    </select>&nbsp &nbsp
+
+                    <!-- <select name="IdFacture">
+                    <?php
+                  //  foreach ($facture as $row) {
+                  //      echo '<option value='.$row["IdFacture"].'>'.$row["IdFacture"].'</option>';
+                  //  }?>-->
+                    </select>&nbsp &nbsp*/
+                    ?>
+                    <br>
+                    <label for="poidsBrutLot">Le poids Brut  :   </label>
+                    <input type="text" name="poidsBrutLot"/> &nbsp &nbsp <br>
+
+                    <label for="prixPlancher">Prix planché :   </label>
+                    <input type="text" name="prixPlancher"/> &nbsp &nbsp<br>
+
+                    <label for="prixDepart">Prix de départ : </label>
+                    <input type="text" name="prixDepart"/> &nbsp &nbsp<br>
+
+                    <label for="prixActuel">prix Actuel : </label>
+                    <input type="text" name="prixActuel"/> &nbsp &nbsp<br>
+
+                    <label for="prixEncheresMax">Prix de l'enchère max : </label>
+                    <input type="text" name="prixEncheresMax"/> &nbsp &nbsp<br>
+
+                    <label for="dateEnchere">Date de l'enchère : </label>
+                    <input type="date" name="dateEnchere"/> &nbsp &nbsp
+
+                    <label for="dateHeureFin">Date de fin : </label>
+                    <input type="date" name="dateHeureFin"/> &nbsp &nbsp<br>
+
+                    <input class="btn btn-large btn-primary" type="submit" value="Valider" />
+                    <input class="btn btn-large btn-primary" type="reset" value="Effacer" />
+                  </p>
+</form>
+
