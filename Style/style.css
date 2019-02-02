@@ -3,10 +3,13 @@
 body, html {
   padding: 0;
   margin: 0;
+  height: 100%;
 }
 
 body {
   font-family: cursive; 
+  min-height: 100%;
+  position: relative;
 }
 
 a, a:hover {
@@ -64,7 +67,6 @@ a, a:hover {
 }
 
 .ban video {
-
   width: 100%;
   max-width: 100%;
 
@@ -95,9 +97,8 @@ a, a:hover {
   background-size: 100%;
   /* Pour ancrer en bas de page*/
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0
+
+
 }
 
 .footerC {
