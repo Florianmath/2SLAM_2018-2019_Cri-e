@@ -23,28 +23,36 @@ public function contenu($id) {
   //$dateActuelle  = time();
  //$dateEnchere = 'SELECT lot.dateEnchere FROM lot';
   //$date1 = strtotime($dateEnchere);
-  //$dateEnchere = strtotime('dateEnchere');
-  //$dateActuelle = date('Y-m-d H:i:s');
-  //$gmdate1 = round((strtotime($dateActuelle) - strtotime($dateEnchere))/(86400)-1); LIGNE IMPORTANTE A PAS DELETE
+ // $dateActuelle = date('Y-m-d H:i:s');
+  $retourneDateE = "SELECT dateEnchere from lot where IdLot = 1";
+  $dateDuJour = date('Y-m-d H:i');
+  $dateActuelle = strtotime($dateDuJour);
+  $dateEnchere = strtotime('retourneDateE');
+  $gmdate1 = ceil(abs($dateEnchere - $dateActuelle) / 86400);
+ // $dateActuelle = strtotime('1st January 2004');
+ // $gmdate1 = idate('d', $dateActuelle); // AFFICHERA 1 CAR PREMIER JANVIER 2004
+ // $gmdate1 = round((strtotime($dateActuelle) - strtotime($dateEnchere))/(86400)-1); //LIGNE IMPORTANTE A PAS DELETE
 
     $etatq = 0; // Tous les paliers de qualité que l'on s'impose lors de l'update. 
     $etatq2 = 5;
     $etatq3 = 10;
     $etatq4 = 15;
 
-   //$taille1 = 10;
+   //$taille1 = 10
     //$taille2 = 20;
  
  
 	switch ($id) {
 		case 'catalogue':
 			$this->load->view('v_bandeau');
+      $this->load->view('v_Identitee');
 		$data['donnees']=$this->main_model->afficheProduits();
     $data['programmee']=$this->main_model->afficheEnchereProgrammee();
 		$data['test']=$this->main_model->lesreferences();
     $this->main_model->etatEnchere($gmdate);
-   // $this->main_model->nombreLot($gmdate1);   --- > je travail dessus actuellement 
+    $data['retourneDateE']=$this->main_model->afficheDateEnchere();
 
+   // $this->main_model->nombreLot($gmdate1);  // --- > je travail dessus actuellement 
 
 
     $this->main_model->etatQualiteOriginal($etatq); // Fonctions d'états fonctionnelles 
@@ -61,16 +69,23 @@ public function contenu($id) {
 
 		case 'enregistrer':
 			$this->load->view('v_bandeau');
+      $this->load->view('v_Identitee');
 			$this->load->view('v_enregistrer');
 			break;
 
 		case 'panier':
+
 			$this->load->view('v_bandeau');
+      $this->load->view('v_Identitee');
 			$this->load->view('v_panier');
+     // $this->load->view('chat');
+     // $data['recupMessage']=$this->main_model->recupMessage();
+     // $data['acheteur']=$this->main_model->recupLogin();
 			break;
 
 		case 'connecter':
 			$this->load->view('v_bandeau');
+
 
 			$data['login'] = $this->session->userdata('login');
             $this->load->view('v_connecter',$data);
@@ -78,7 +93,6 @@ public function contenu($id) {
             break;
 
 		case 'connection':
-
 
            $loginSaisie =$this->input->post('login');
            $pwdSaisie = $this->input->post('pwd');
@@ -100,20 +114,23 @@ public function contenu($id) {
 			   $data['erreur'] = 'Aucun compte ne correspond à vos identifiants ';
 			   $this->load->view('v_connecter',$data);
 		   }
-
-
             break;
 
         case 'administrer':
             $this->load->view('v_entete');
             $this->load->view('v_bandeau');
+            $this->load->view('v_Identitee');
 
             $data['compte_admin']=$this->main_model->afficheAdministrateurs();
             $data['compte_utilisateur']=$this->main_model->afficheUtilisateur();
+           // $data['factureLot']=$this->main_model->validationLot();
             //$data['meilleuracheteur']=$this->main_model->afficheMeilleurAcheteur();
-            $data['enchereterminee']=$this->main_model->afficheEnchereTerminee();
-            
+            $data['acheteur']=$this->main_model->recupLogin();
 
+            $data['enchereterminee']=$this->main_model->afficheEnchereTerminee();
+      //      $data['libelleFacture']=$this->main_model->recupLibelleFacture();
+           // $data['destruction']=$this->main_model->destructionLot();            
+            $data['recupLot']=$this->main_model->recupLot();
             $this->load->view('v_administrer',$data);
             break;
 		case 'deconnecter':
@@ -138,13 +155,40 @@ public function contenu($id) {
       $data['acheteur']=$this->main_model->recupAcheteur();
       $data['qualite']=$this->main_model->recupQualite();
       $data['espece']=$this->main_model->recupEspece();
+      $data['facture']=$this->main_model->recupFacture();
+      $data['etatEnchere']=$this->main_model->recupEnchere();
 
 
 
       $this->load->view('v_entete');
       $this->load->view('v_bandeau');
+      $this->load->view('v_Identitee');
       $this->load->view('v_ajouter', $data);
       break;
+    case 'chat':
+
+        //$this->load->view('v_entete');
+  //      $this->load->view('v_entete');
+  //      $this->load->view('v_bandeau');
+        $this->load->view('v_Identitee');
+        $data['recupMessage']=$this->main_model->recupMessage();
+        $data['acheteur']=$this->main_model->recupLogin();
+        $this->load->view('v_bandeau');
+        $this->load->view('chat', $data);
+      break;
+    case 'monCompte':
+      
+      $this->load->view('v_bandeau');
+      $data['resultats']=$this->main_model->afficheInfoUtilisateur();
+      $this->load->view('v_monCompte', $data);
+      
+      break;
+    case 'modificationAdresse':
+
+      $this->load->view('v_bandeau');
+      $this->load->view('modificationAdresse');
+      break;
+
 
 		default :
 			$this->load->view('v_bandeau');
@@ -161,6 +205,7 @@ public function contenu($id) {
 		$this->load->view('v_bandeau');
 		$this->load->view('v_accueil');
 		$this->load->view('v_finPage');
+ //   $this->load->view('chat');
 
 	}
 
@@ -179,13 +224,29 @@ public function contenu($id) {
 
     $nouveauPrix = $this->input->post('prix');
     $idlot = $this->input->post('numLot');
+    $loginAcheteur = $this->input->post('loginAcheteur');
+    $IdAcheteur = $this->input->post('IdAcheteur');
 
     $this->main_model->enregistrePrix($nouveauPrix, $idlot);
+    $this->main_model->enregistreIdAcheteur($loginAcheteur,  $idlot);
     $data['message'] = 'Offre prise en compte';
-
-
+   // $data['acheteur']=$this->main_model->SelectIdAcheteur($loginAcheteur);
   }
-  /*public function dateEnchere()
+
+  public function afficheInfoUtilisateur()
+  {
+    $this->load->database();
+    $this->load->helper('url_helper');
+    $this->load->helper('form');
+    $this->load->model('main_model');
+    $this->load->view('v_entete');
+    $this->load->view('v_bandeau');
+    $this->load->view('v_accueil');
+    $this->load->view('v_finPage');
+    $login = $this->input->post('login');
+  }
+
+  public function nombreLot()
   {
     $this->load->helper(array('form', 'url'));
 
@@ -197,11 +258,153 @@ public function contenu($id) {
     $this->load->view('v_bandeau');
     $this->load->view('v_accueil');
     $this->load->view('v_finPage');
-    $nouveauPrix = $this->input->post('prix');  
-    $this->main_model->enregistreDateEnchere($nouvelleDate);
-    foreach ($donnees as $row ) {
-    $dateEnchere1 = $row["dateEnchere"] + 1;
-    }
+
+    $this->main_model->nombreLot($gmdate1, $IdLot);
+    $gmdate1 = $this->input->post('nbreJourLot');
+    $IdLot = $this->input->post('IdLot');                                     
+
+    $data['retourneDateE']=$this->main_model->afficheDateEnchere();
+  }
+// ----- MISE EN PLACE DU CHAT - TROISIEME VERSION - PAS OK ------
+  public function getMessage()
+  {
+    $this->load->helper(array('form', 'url'));
+
+    $this->load->database();
+    $this->load->helper('url_helper');
+    $this->load->helper('form');
+    $this->load->model('main_model');
+
+    $this->main_model->insertMessage($insertMessage);
+   // $insertMessage->execute(array($_POST['pseudo'], $_POST['message']));
+    $data['recupMessage']=$this->main_model->recupMessage();
+  }
+
+  public function insertMessage()
+  {
+    $this->load->helper(array('form', 'url'));
+
+    $this->load->database();
+    $this->load->helper('url_helper');
+    $this->load->helper('form');
+    $this->load->model('main_model');
+    // $dateHeure = date('Y-m-d H:i:s');
+    $mesMessages = array(
+      //'id' => $this->input->post('id'),
+      'message' => $this->input->post('message'),
+      'dateHeure' => date('Y-m-d H:i:s'), // insert avec une constante 
+     // 'IdAcheteur' => $this->input->post('IdAcheteur')
+       );
+
+   // $dateHeure = $this->input->post('dateHeure');
+    $loginAcheteur =$this->input->post('loginAcheteur');
+    $IdAcheteur = $this->input->post('IdAcheteur');
+    //$id = $this->input->post('id');
+   // $dateHeure = date('Y-m-d H:i:s');
+
+    $this->main_model->insertMessage($loginAcheteur, $mesMessages);
+    //$this->main_model->updateHeure($laDateHeure, $id);
+    $data['recupMessage']=$this->main_model->recupMessage();
+    $data['acheteur']=$this->main_model->recupLogin();
+
+  //  $this->load->view('v_bandeau');
+    $this->load->view('v_entete');
+    $this->load->view('v_bandeau');
+    $this->load->view('v_enregistreChat');
+    
+   
+  }
+
+    public function facture()
+  {
+    
+    $this->load->helper(array('form', 'url'));
+
+    $this->load->database();
+    $this->load->helper('url_helper');
+    $this->load->helper('form');
+    $this->load->model('main_model');
+    $IdFacture = $this->input->post('IdFacture');
+    $idlot = $this->input->post('IdLot');
+    //  'libelleFacture'=>$this->input->post('libelleFacture')
+    $this->main_model->factures($IdFacture, $idlot);
+    $this->load->view('v_enregistrerBateau');
+    $data['recupLot']=$this->main_model->recupLot();
+  }
+
+
+/* PREMIERE VERSION OK
+  public function getMessage()
+  {
+    $this->load->helper(array('form', 'url'));
+
+    $this->load->database();
+    $this->load->helper('url_helper');
+    $this->load->helper('form');
+    $this->load->model('main_model');
+
+    $this->main_model->insertMessage($insertMessage);
+   // $insertMessage->execute(array($_POST['pseudo'], $_POST['message']));
+    $data['recupMessage']=$this->main_model->recupMessage();
+  }
+
+  public function insertMessage()
+  {
+    $this->load->helper(array('form', 'url'));
+
+    $this->load->database();
+    $this->load->helper('url_helper');
+    $this->load->helper('form');
+    $this->load->model('main_model');
+    $mesMessages = array(
+      'pseudo' => $this->input->post('pseudo'),
+      'message' => $this->input->post('message')
+       );
+    $this->main_model->insertMessage($mesMessages);
+    $data['recupMessage']=$this->main_model->recupMessage();
+  //  $this->load->view('v_bandeau');
+    $this->load->view('v_entete');
+    $this->load->view('v_bandeau');
+    $this->load->view('v_enregistreChat');
+    
+   
+  }*/
+//DEUXIEME VERSION OK
+ /* public function getMessage()
+  {
+    $this->load->helper(array('form', 'url'));
+
+    $this->load->database();
+    $this->load->helper('url_helper');
+    $this->load->helper('form');
+    $this->load->model('main_model');
+
+    $this->main_model->insertMessage($insertMessage);
+   // $insertMessage->execute(array($_POST['pseudo'], $_POST['message']));
+    $data['recupMessage']=$this->main_model->recupMessage();
+  }
+
+  public function insertMessage()
+  {
+    $this->load->helper(array('form', 'url'));
+
+    $this->load->database();
+    $this->load->helper('url_helper');
+    $this->load->helper('form');
+    $this->load->model('main_model');
+    $mesMessages = array(
+      'login' => $this->input->post('login'),
+      'message' => $this->input->post('message')
+       );
+    $this->main_model->insertMessage($mesMessages);
+    $data['recupMessage']=$this->main_model->recupMessage();
+    $data['acheteur']=$this->main_model->recupLogin();
+  //  $this->load->view('v_bandeau');
+    $this->load->view('v_entete');
+    $this->load->view('v_bandeau');
+    $this->load->view('v_enregistreChat');
+    
+   
   }*/
 
 
@@ -251,6 +454,7 @@ public function contenu($id) {
           $this->load->view('v_finPage');
     }
   }
+
 
   public function enregistreEspece() 
   {
@@ -388,22 +592,65 @@ public function contenu($id) {
     }
 
   }
+ 
+  public function suppressionLot($unIdLot)
+  {
+
+    $this->load->database();
+    $this->load->helper('url_helper');
+    $this->load->helper('form');
+    $this->load->model('main_model');
+
+   $unIdlot = $this->input->get('IdLot');
+    $this->main_model->suppressionLot($unIdlot);
+    $this->load->view('v_entete');
+    $this->load->view('v_bandeau');
+    $this->load->view('v_enregistrerBateau');
+    $this->load->view('v_finPage');
+   // $this->load->view('v_administrer');
+    
+     
+     $data['recupLot']=$this->main_model->recupLot();
+  }
+  public function validationLot()
+  {
+
+    $this->load->database();
+    $this->load->helper('url_helper');
+    $this->load->helper('form');
+    $this->load->model('main_model');
+
+    $facture = array(
+      'IdFacture' => $this->input->post('IdFacture'),
+      'libelleFacture' => $this->input->post('libelleFacture')
+      );
+
+    $this->main_model->validationLot($facture);
+    $this->load->view('v_entete');
+    $this->load->view('v_bandeau');
+    $this->load->view('v_enregistrerBateau');
+    $this->load->view('v_finPage');
+    $data['recupLot']=$this->main_model->recupLot();
+  }
+
+
 
   public function enregistreLot()
   {
     $this->load->helper(array('form', 'url'));
     $this->load->library('form_validation');
 
-    $this->form_validation->set_rules('IdLot', 'Id du lot', 'required');
+ //   $this->form_validation->set_rules('IdLot', 'Id du lot', 'required');
     $this->form_validation->set_rules('IdBateau', "Id du bateau", 'required');
     $this->form_validation->set_rules('datePeche', "date de peche", 'required');
     $this->form_validation->set_rules('IdEspece', "Id de l'espèce", 'required');
     $this->form_validation->set_rules('IdTaille', "Id de la taille", 'required');
     $this->form_validation->set_rules('IdPresentation', "Id la présentation", 'required');
     $this->form_validation->set_rules('IdBac', "Id du bac", 'required');
-    $this->form_validation->set_rules('IdAcheteur', "Id de l'acheteur", 'required');
-    $this->form_validation->set_rules('IdQualite', "Id de la qualité", 'required');
-   
+  //  $this->form_validation->set_rules('IdAcheteur', "Id de l'acheteur", 'required');
+  //   $this->form_validation->set_rules('IdQualite', "Id de la qualité", 'required');
+  //  $this->form_validation->set_rules('IdFacture', 'ID de la facture', 'required');
+    
     $this->form_validation->set_rules('poidsBrutLot', 'Le poids brut', 'required');
     $this->form_validation->set_rules('prixPlancher', 'Le prix plancher', 'required');
     $this->form_validation->set_rules('prixDepart', 'Le prix départ', 'required');
@@ -411,7 +658,7 @@ public function contenu($id) {
     $this->form_validation->set_rules('prixEncheresMax', 'Le prix enchere max', 'required');
     $this->form_validation->set_rules('dateEnchere', 'La date enchere', 'required');
     $this->form_validation->set_rules('dateHeureFin', 'La date heure fin', 'required');
-    $this->form_validation->set_rules('IdFacture', 'ID de la facture', 'required');
+
     if ($this->form_validation->run() == FALSE)
     {
             $this->load->database();
@@ -424,6 +671,8 @@ public function contenu($id) {
             $data['acheteur']=$this->main_model->recupAcheteur();
             $data['qualite']=$this->main_model->recupQualite();
             $data['espece']=$this->main_model->recupEspece();
+            $data['facture']=$this->main_model->recupEspece();
+            $data['etatEnchere']=$this->main_model->recupEnchere();
             $this->load->helper('form');
             $this->load->view('v_entete');
             $this->load->view('v_bandeau');
@@ -452,15 +701,15 @@ public function contenu($id) {
             'IdFacture' => $IdFacture
             ));*/
             $tab = array(
-            'IdLot' => $this->input->post('IdLot'),
+         //   'IdLot' => $this->input->post('IdLot'),
             'IdBateau' => $this->input->post('IdBateau'),
             'datePeche' => $this->input->post('datePeche'),
             'IdEspece' => $this->input->post('IdEspece'),
             'IdTaille' => $this->input->post('IdTaille'),
             'IdPresentation' => $this->input->post('IdPresentation'),
             'IdBac' => $this->input->post('IdBac'),
-            'IdAcheteur' => $this->input->post('IdAcheteur'),
-            'IdQualite ' => $this->input->post('IdQualite'),
+        //    'IdAcheteur' => $this->input->post('IdAcheteur'),
+        //    'IdQualite ' => $this->input->post('IdQualite'),
             'poidsBrutLot' => $this->input->post('poidsBrutLot'),
             'prixPlancher' => $this->input->post('prixPlancher'),
             'prixDepart' => $this->input->post('prixDepart'),
@@ -468,7 +717,7 @@ public function contenu($id) {
             'prixEncheresMax' => $this->input->post('prixEncheresMax'),
             'dateEnchere' => $this->input->post('dateEnchere'),
             'dateHeureFin' => $this->input->post('dateHeureFin'),
-            'IdFacture' => $this->input->post('IdFacture')
+          //  'IdFacture' => $this->input->post('IdFacture')
           );
           $data['bat']=$this->main_model->recupIdBateau();
           $data['peche']=$this->main_model->recupDatePeche();
@@ -478,6 +727,8 @@ public function contenu($id) {
           $data['acheteur']=$this->main_model->recupAcheteur();
           $data['qualite']=$this->main_model->recupQualite();
           $data['espece']=$this->main_model->recupEspece();
+          $data['facture']=$this->main_model->recupEspece();
+          $data['etatEnchere']=$this->main_model->recupEnchere();
           $this->main_model->enregistreLot($tab);
           //chargement de la View
           $this->load->view('v_ajouter', $data);
