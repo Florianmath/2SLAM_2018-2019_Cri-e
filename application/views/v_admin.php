@@ -1,3 +1,17 @@
+<style type="text/css">
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+           }
+#logoInscription {
+  color: #000000;
+  margin-right: 20px;
+}
+
+</style>
+
 <div class="alert alert-warning" role="alert">
 <?php echo validation_errors(); ?> </div>
 
@@ -19,15 +33,15 @@
                     <input type="text" name="rue"  />
 
                     <br />
-                    <label for="numRue">Votre numéro de rue :</label>
+                    <label for="numRue">Votre numéro de rue:</label>
                     <input type="number" name="numRue"  />
 
                     <br />
-                    <label for="ville">Votre ville:</label>
+                    <label for="ville">Votre ville :</label>
                     <input type="text" name="ville"  />
 
                     <br />
-                    <label for="codePostal">Votre code postal:</label>
+                    <label for="codePostal">Votre code postal :</label>
                     <input type="number" name="codePostal"  /><br/>
 
 
