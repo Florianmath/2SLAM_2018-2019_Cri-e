@@ -45,7 +45,44 @@
                     <input type="number" name="codePostal"  /><br/>
 
 
-                    <br /><br />
+                    <br />
+                <!---                   ---- MISE EN PLACE DES CGU ----
+
+
+
+                Le but : mettre en place des conditions d'utilisation qui, lorsque l'on clique dessus, renvoit vers une vue
+                    "v_conditions". Cette vue sera composée de règles d'utilisation du site (osef).
+                      Comment ?
+                      HTML :
+                   <label>J'ai lu et j'accepte les conditions d'utilisation : </label> <input type="checkbox" name="cgu">
+                    
+
+
+
+                      BDD :
+                      Mettre en place un nouveau champ "conditionGeneral" booléen dans une table (acheteur ?)
+                   OU Mettre en place un nouvelle table "conditions" avec "conditionsGeneral" booléen 
+                      
+                      PHP :
+                        utilisateur :
+                            Dans formulaire rajouter :
+                            $recupCgu = $_POST['cgu'];
+
+                            if(isset($_POST['cgu'])){
+                              $recupCgu = $_POST['cgu'];
+                            }
+
+
+                        model : 
+                        Ne pas toucher (récupérer via la fonction enregistreAcheteur())
+                        
+
+
+
+
+                 -->
+
+                    <br />
 
 
                     <!-- Pour les boutons-->

@@ -465,7 +465,7 @@ public function contenu($id) {
             $this->load->model('main_model');
             $this->load->view('v_entete');
             $this->load->view('v_bandeau');
-            $this->load->view('v_enregistrerBateau');
+            $this->load->view('v_enregistrerModificationCompte');
 
            
           $rue = $this->input->post('rue');
@@ -476,7 +476,7 @@ public function contenu($id) {
           $this->main_model->enregistreNouvelleRue($rue);
 
           //chargement de la View
-          $this->load->view('modificationAdresse', $data);
+           $this->load->view('v_monCompte', $data);
           $this->load->view('v_finPage');
   }
 
@@ -488,7 +488,7 @@ public function contenu($id) {
             $this->load->model('main_model');
             $this->load->view('v_entete');
             $this->load->view('v_bandeau');
-            $this->load->view('v_enregistrerBateau');
+            $this->load->view('v_enregistrerModificationCompte');
 
            
           $numRue = $this->input->post('numRue');
@@ -498,7 +498,7 @@ public function contenu($id) {
           $this->main_model->enregistreNouvelleNumRue($numRue);
           
           //chargement de la View
-          $this->load->view('modificationAdresse', $data);
+          $this->load->view('v_monCompte', $data);
           $this->load->view('v_finPage');
   }
 
@@ -510,7 +510,7 @@ public function contenu($id) {
             $this->load->model('main_model');
             $this->load->view('v_entete');
             $this->load->view('v_bandeau');
-            $this->load->view('v_enregistrerBateau');
+            $this->load->view('v_enregistrerModificationCompte');
 
            
           $ville = $this->input->post('ville');
@@ -520,7 +520,7 @@ public function contenu($id) {
           $this->main_model->enregistreNouvelleVille($ville);
           
           //chargement de la View
-          $this->load->view('modificationAdresse', $data);
+           $this->load->view('v_monCompte', $data);
           $this->load->view('v_finPage');
   }
 
@@ -532,7 +532,7 @@ public function contenu($id) {
             $this->load->model('main_model');
             $this->load->view('v_entete');
             $this->load->view('v_bandeau');
-            $this->load->view('v_enregistrerBateau');
+            $this->load->view('v_enregistrerModificationCompte');
 
            
           $codePostal = $this->input->post('codePostal');
@@ -542,7 +542,7 @@ public function contenu($id) {
           $this->main_model->enregistreNouvelleCodepostal($codePostal);
           
           //chargement de la View
-          $this->load->view('modificationAdresse', $data);
+           $this->load->view('v_monCompte', $data);
           $this->load->view('v_finPage');
   }
 
@@ -554,7 +554,7 @@ public function contenu($id) {
             $this->load->model('main_model');
             $this->load->view('v_entete');
             $this->load->view('v_bandeau');
-            $this->load->view('v_enregistrerBateau');
+            $this->load->view('v_enregistrerModificationCompte');
 
            
           $numHabilitation = $this->input->post('numHabilitation');
@@ -564,7 +564,7 @@ public function contenu($id) {
           $this->main_model->enregistreNouvelleNumHabilitation($numHabilitation);
           
           //chargement de la View
-          $this->load->view('modificationAdresse', $data);
+           $this->load->view('v_monCompte', $data);
           $this->load->view('v_finPage');
   }
 
