@@ -6,7 +6,7 @@ body, html {
 }
 
 body {
-  font-family: cursive;
+  font-family: cursive; 
 }
 
 a, a:hover {
@@ -95,10 +95,10 @@ a, a:hover {
   background-size: 100%;
   /* Pour ancrer en bas de page*/
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0
+
 }
+
+
 
 .footerC {
   color: #ffffff;
@@ -186,4 +186,4 @@ label
   width: 10%;
   float: center-left;
 
-} */
+} 

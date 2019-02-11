@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Ven 08 Février 2019 à 14:33
+-- Généré le :  Lun 11 Février 2019 à 14:49
 -- Version du serveur :  5.7.11
 -- Version de PHP :  5.6.18
 
@@ -82,19 +82,18 @@ CREATE TABLE `acheteur` (
   `ville` varchar(50) DEFAULT NULL,
   `codePostal` int(5) DEFAULT NULL,
   `numHabilitation` int(5) DEFAULT NULL,
-  `message` varchar(200) DEFAULT NULL,
-  `cgu` tinyint(1) DEFAULT NULL
+  `message` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `acheteur`
 --
 
-INSERT INTO `acheteur` (`IdAcheteur`, `login`, `pwd`, `raisonSocialeEntreprise`, `rue`, `numRue`, `ville`, `codePostal`, `numHabilitation`, `message`, `cgu`) VALUES
-(0, 'Personne', 'test', 'test', 'test', 0, 'test', 0, 0, NULL, NULL),
-(1, 'a', 'a', 'a', 'a', 1, 'a', 1, 1, NULL, NULL),
-(2, 'administrateur', 'mdp', NULL, 'rue', 1, 'feg', 64000, NULL, NULL, NULL),
-(3, 'miragouledead', 'mdp', NULL, 'rue du Commandant', 11, 'Roubaix', 67640, 16, NULL, NULL);
+INSERT INTO `acheteur` (`IdAcheteur`, `login`, `pwd`, `raisonSocialeEntreprise`, `rue`, `numRue`, `ville`, `codePostal`, `numHabilitation`, `message`) VALUES
+(0, 'Personne', 'test', 'test', 'test', 0, 'test', 0, 0, NULL),
+(1, 'a', 'a', 'a', 'a', 1, 'a', 1, 1, NULL),
+(2, 'administrateur', 'mdp', NULL, 'rue', 1, 'feg', 64000, NULL, NULL),
+(3, 'miragouledead', 'mdp', NULL, 'rue', 11, 'feg', 64000, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -214,16 +213,18 @@ CREATE TABLE `lot` (
 --
 
 INSERT INTO `lot` (`IdLot`, `IdBateau`, `datePeche`, `IdEspece`, `IdTaille`, `IdPresentation`, `IdBac`, `IdAcheteur`, `IdQualite`, `poidsBrutLot`, `prixPlancher`, `prixDepart`, `prixActuel`, `prixEncheresMax`, `dateEnchere`, `dateHeureFin`, `codeEtat`, `nbreJourLot`, `IdFacture`) VALUES
-(1, 'leBat', '2018-12-19', 'trt', 'grd', 'pres1', '1', 1, 'ma', 60, 25, 25, 1000, 1000, '2019-01-18 15:00:00', '2019-12-25 15:00:00', 'en cours', 21, 0),
-(2, 'leBat', '2018-12-19', 'trt', 'grd', 'pres1', '1', 2, 'ma', 80, 25, 25, 1015, 2500, '2019-01-09 00:00:00', '2019-12-21 16:30:00', 'en cours', 30, 0),
-(3, 'leBat', '2018-12-19', 'cbd', 'grd', 'pres1', '1', 1, 'ma', 80, 50, 50, 50, 5000, '2019-01-10 00:00:00', '2019-02-08 12:00:00', 'terminé', 29, 0),
-(4, 'LaVoile', '2019-01-11', 'cbd', 'grd', '2', '1', 1, 'ma', 89, 2000, 30, 30, 2000, '2019-01-11 00:00:00', '2019-01-16 00:00:00', 'terminé', 28, 3),
-(5, 'LaVoile', '2019-01-11', 'har', 'grd', '2', '1', 1, 'mo', 100, 100, 50, 50, 100, '2019-02-01 00:00:00', '2019-03-02 00:00:00', 'en cours', 7, 0),
-(7, 'leBat', '2018-12-19', 'cbd', 'grd', '2', '1', 2, 'ma', 100, 1000, 20, 73, 500, '2019-01-12 00:00:00', '2019-01-31 00:00:00', 'terminé', 27, 0),
-(8, 'leBat', '2018-12-19', 'cdm', 'pet', '2', '1', 1, 'ma', 100, 3000, 50, 50, 3000, '2019-01-13 00:00:00', '2019-02-03 00:00:00', 'terminé', 26, 0),
-(9, 'LaVoile', '2019-01-11', 'har', 'grd', '2', '1', 2, 'ma', 100, 2000, 50, 130, 2000, '2019-01-14 00:00:00', '2019-03-01 00:00:00', 'en cours', 25, 0),
-(10, 'LaVoile', '2019-01-11', 'sau', 'grd', '2', '1', 1, 'ma', 100, 3000, 30, 100, 100, '2019-01-15 00:00:00', '2019-01-15 00:00:00', 'terminé', 24, 0),
-(13, 'LaVoile', '2019-01-11', 'cbd', 'grd', '3', '1', 2, 'ma', 100, 1000, 25, 30, 1000, '2019-01-23 00:00:00', '2019-02-08 00:00:00', 'terminé', 16, NULL);
+(1, 'leBat', '2018-12-19', 'trt', 'grd', 'pres1', '1', 2, 'ma', 60, 25, 25, 1000, 1000, '2019-01-18 15:00:00', '2019-12-25 15:00:00', 'en cours', 24, 0),
+(2, 'leBat', '2018-12-19', 'trt', 'grd', 'pres1', '1', 2, 'ma', 80, 25, 25, 1015, 2500, '2019-01-09 00:00:00', '2019-12-21 16:30:00', 'en cours', 33, 0),
+(3, 'leBat', '2018-12-19', 'cbd', 'grd', 'pres1', '1', 1, 'ma', 80, 50, 50, 50, 5000, '2019-01-10 00:00:00', '2019-02-08 12:00:00', 'terminé', 32, 0),
+(4, 'LaVoile', '2019-01-11', 'cbd', 'grd', '2', '1', 1, 'ma', 89, 2000, 30, 30, 2000, '2019-01-11 00:00:00', '2019-01-16 00:00:00', 'terminé', 31, 3),
+(5, 'LaVoile', '2019-01-11', 'har', 'grd', '2', '1', 1, 'bo', 100, 100, 50, 50, 100, '2019-02-01 00:00:00', '2019-03-02 00:00:00', 'en cours', 10, 0),
+(7, 'leBat', '2018-12-19', 'cbd', 'grd', '2', '1', 2, 'ma', 100, 1000, 20, 73, 500, '2019-01-11 00:00:00', '2019-01-31 00:00:00', 'terminé', 31, 0),
+(8, 'leBat', '2018-12-19', 'cdm', 'pet', '2', '1', 1, 'ma', 100, 3000, 50, 50, 3000, '2019-01-13 00:00:00', '2019-02-03 00:00:00', 'terminé', 29, 0),
+(9, 'LaVoile', '2019-01-11', 'har', 'grd', '2', '1', 2, 'ma', 100, 2000, 50, 130, 2000, '2019-01-13 00:00:00', '2019-03-01 00:00:00', 'en cours', 29, 0),
+(10, 'LaVoile', '2019-01-11', 'sau', 'grd', '2', '1', 1, 'ma', 100, 3000, 30, 100, 100, '2019-01-15 00:00:00', '2019-01-15 00:00:00', 'terminé', 27, 0),
+(13, 'LaVoile', '2019-01-11', 'cbd', 'grd', '3', '1', 2, 'ma', 100, 1000, 25, 30, 1000, '2019-01-23 00:00:00', '2019-02-08 00:00:00', 'terminé', 19, NULL),
+(14, 'LaVoile', '2019-01-11', 'cha', 'grd', '4', '1', 0, 'ma', 100, 50, 20, 20, 1000, '2020-02-20 00:00:00', '2020-03-09 00:00:00', 'en cours', 374, NULL),
+(15, 'LaVoile', '2019-01-11', 'mor', 'grd', '3', '1', 0, 'bo', 100, 50, 20, 20, 1000, '2019-02-15 00:00:00', '2019-02-27 00:00:00', 'en cours', 4, NULL);
 
 --
 -- Déclencheurs `lot`
@@ -252,14 +253,6 @@ CREATE TABLE `minichat` (
   `IdAcheteur` int(5) NOT NULL,
   `dateHeure` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Contenu de la table `minichat`
---
-
-INSERT INTO `minichat` (`id`, `message`, `IdAcheteur`, `dateHeure`) VALUES
-(1, 'bonjour', 3, '2019-02-08 11:58:55'),
-(2, 'je suis en train d\'écrire sur le chat', 3, '2019-02-08 11:59:04');
 
 -- --------------------------------------------------------
 
@@ -474,17 +467,17 @@ ALTER TABLE `taille`
 -- AUTO_INCREMENT pour la table `acheteur`
 --
 ALTER TABLE `acheteur`
-  MODIFY `IdAcheteur` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `IdAcheteur` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `lot`
 --
 ALTER TABLE `lot`
-  MODIFY `IdLot` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `IdLot` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT pour la table `minichat`
 --
 ALTER TABLE `minichat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Contraintes pour les tables exportées
 --

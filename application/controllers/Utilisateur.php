@@ -33,6 +33,7 @@ public function contenu($id) {
  // $gmdate1 = idate('d', $dateActuelle); // AFFICHERA 1 CAR PREMIER JANVIER 2004
  // $gmdate1 = round((strtotime($dateActuelle) - strtotime($dateEnchere))/(86400)-1); //LIGNE IMPORTANTE A PAS DELETE
 
+    $etatq0 = NULL ;
     $etatq = 0; // Tous les paliers de qualité que l'on s'impose lors de l'update. 
     $etatq2 = 5;
     $etatq3 = 10;
@@ -156,7 +157,7 @@ public function contenu($id) {
       $data['qualite']=$this->main_model->recupQualite();
       $data['espece']=$this->main_model->recupEspece();
       $data['facture']=$this->main_model->recupFacture();
-      $data['etatEnchere']=$this->main_model->recupEnchere();
+      $data['codeEtat']=$this->main_model->recupEEtat();
 
 
 
@@ -170,10 +171,11 @@ public function contenu($id) {
         //$this->load->view('v_entete');
   //      $this->load->view('v_entete');
   //      $this->load->view('v_bandeau');
-        $this->load->view('v_Identitee');
+        
         $data['recupMessage']=$this->main_model->recupMessage();
         $data['acheteur']=$this->main_model->recupLogin();
         $this->load->view('v_bandeau');
+        $this->load->view('v_Identitee');
         $this->load->view('chat', $data);
       break;
     case 'monCompte':
@@ -792,7 +794,7 @@ public function contenu($id) {
             $data['qualite']=$this->main_model->recupQualite();
             $data['espece']=$this->main_model->recupEspece();
             $data['facture']=$this->main_model->recupEspece();
-            $data['etatEnchere']=$this->main_model->recupEnchere();
+            $data['codeEtat']=$this->main_model->recupEEtat();
             $this->load->helper('form');
             $this->load->view('v_entete');
             $this->load->view('v_bandeau');
@@ -837,6 +839,7 @@ public function contenu($id) {
             'prixEncheresMax' => $this->input->post('prixEncheresMax'),
             'dateEnchere' => $this->input->post('dateEnchere'),
             'dateHeureFin' => $this->input->post('dateHeureFin'),
+            'codeEtat' => $this->input->post('codeEtat'),
           //  'IdFacture' => $this->input->post('IdFacture')
           );
           $data['bat']=$this->main_model->recupIdBateau();
@@ -848,7 +851,7 @@ public function contenu($id) {
           $data['qualite']=$this->main_model->recupQualite();
           $data['espece']=$this->main_model->recupEspece();
           $data['facture']=$this->main_model->recupEspece();
-          $data['etatEnchere']=$this->main_model->recupEnchere();
+          $data['codeEtat']=$this->main_model->recupEEtat();
           $this->main_model->enregistreLot($tab);
           //chargement de la View
           $this->load->view('v_ajouter', $data);

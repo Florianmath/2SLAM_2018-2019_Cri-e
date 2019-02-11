@@ -3,6 +3,14 @@
 			  color: #000000;
 			  margin-right: 20px;
 			}
+
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+           }
 </style>
 <html>
 	<head>

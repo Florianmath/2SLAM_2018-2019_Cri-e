@@ -157,13 +157,21 @@ class Main_model extends CI_Model {
         return $facture;
     }
 
+    public function recupEEtat()
+    {
+        $sql99=$this->db->conn_id->prepare("SELECT DISTINCT lot.codeEtat FROM lot");
+        $sql99->execute();
+        $codeEtat = $sql99->fetchAll();
+        return $codeEtat;
+    }
+
     public function afficheDateEnchere(){
 
       /*  $sql23=$this->db->conn_id->prepare ("SELECT IdLot FROM lot order by desc "); // on prend le nombre de lots tt simplement
         $sql23->execute();
         $retourneLot=$sql23->fetchAll();*/
 
-        $sql22=$this->db->conn_id->prepare ("SELECT IdLot, dateEnchere FROM lot"); // on prend le nbre de jour de IdLot num 3 (=12)
+        $sql22=$this->db->conn_id->prepare ("SELECT IdLot, dateEnchere WHERE codeEtat = 'en cours' FROM lot"); // on prend le nbre de jour de IdLot num 3 (=12)
         $sql22->execute();
         $retourneDateE=$sql22->fetchAll();
 
@@ -174,7 +182,7 @@ class Main_model extends CI_Model {
              {
                 $getLot = $row['IdLot'];
                 $dateEnchere = strtotime($row['dateEnchere']);
-                $gmdate1 = ceil(abs($dateEnchere - $dateActuelle) / 86400);
+                $gmdate1 = ceil(abs($dateActuelle - $dateEnchere) / 86400);
                 $this->db->set('nbreJourLot', $gmdate1);
                 $this->db->where('IdLot', $getLot);
                 $this->db->update('lot');
@@ -303,12 +311,7 @@ class Main_model extends CI_Model {
     }
 
 
-    public function etatEnchere($gmdate)
-    {
-      $this->db->set('codeEtat', 'terminé');
-      $this->db->where('dateHeureFin <', $gmdate);
-      $this->db->update('lot');
-    }
+  
 
     public function recupEnchere()
     {
@@ -321,6 +324,13 @@ class Main_model extends CI_Model {
     }
 
 /* ----- FONCTIONS ETAT : Permettent de mettre en place la qualité en direct ----- */
+    
+      public function etatEnchere($gmdate)
+    {
+      $this->db->set('codeEtat', 'terminé');
+      $this->db->where('dateHeureFin <', $gmdate);
+      $this->db->update('lot');
+    }
 
     public function etatEnchereProg($gmdate)
     {
@@ -329,10 +339,10 @@ class Main_model extends CI_Model {
       $this->db->where('dateHeureFin >', $gmdate);
       $this->db->update('lot');
     }
-    public function etatQualiteOriginal($etatq)
+    public function etatQualiteOriginal($etatq0)
     {
         $this->db->set('IdQualite', 'or');
-        $this->db->where('nbreJourLot <', $etatq );
+        $this->db->where('nbreJourLot =', $etatq0 );
         $this->db->update('lot');
     }
     public function etatQualiteBonne($etatq, $etatq2)

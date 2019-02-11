@@ -166,6 +166,15 @@ echo validation_errors(); ?> </div>
                     }?>
                     </select>&nbsp &nbsp
 
+                     <select name="codeEtat">
+                    <?php
+                    /*foreach ($codeEtat as $row) {
+                        echo '<option value='.$row["codeEtat"].'>'.$row["codeEtat"].'</option>';
+                    }*/?>
+                        <option value = 'programmée'>programmée</option>
+                    </select>&nbsp &nbsp
+
+
                     <!-- Enregistrer la qualité : 
 
                     <select name="IdQualite">-->
