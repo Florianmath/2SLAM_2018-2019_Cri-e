@@ -20,13 +20,13 @@ function horloge(){
 horloge();
 </script>
 	</head>
-		
+
 </html>
 <?php
 
 //-----------------------Non connecté--------------------------
 
-// ---- Mise en place de la première table ---- // 
+// ---- Mise en place de la première table ---- //
 
 if (!isset($_SESSION['login']) && !isset($_SESSION['pwd']))
 {
@@ -59,10 +59,10 @@ echo "<br/><br/><p> Vous devez être connecté pour participer aux enchères</p>
 
 //-----------------------Connecté--------------------------
 
-// ---- Mise en place de la première table ---- // 
+// ---- Mise en place de la première table ---- //
 else
 {
-		
+
 
 	echo "<br/>Enchères en cours : <br/>";
 
@@ -74,19 +74,45 @@ else
 	</script>
 		<form method="post" action="<?php echo site_url ('utilisateur/prix'); ?>">
 	</body>
-	
+
+<?php
+// ---- Mise en place du tableau en Bootstrap ---- //
+?>
+
+	<div class="table-responsive">
+	  <table id='catalogue' class="table">
+			<thead>
 		<?php
-		echo "<table id='catalogue'><tr><th>Photo</th><th>IdLot</th><th>Bateau</th><th>Espece</th><th>Taille</th><th>Presentation</th><th>Qualite</th><th>Poids Brut</th><th>Prix Depart</th><th>Prix actuel</th><th>Prix max</th><th>Date heure début</th><th>date heure fin</th><th>Etat</th><th> Acheteur actuel : </th><th> Nombre de jours du lot ... </th></tr>";
+		echo "<tr class=\"table-primary\"><th scope=\"col\">Photo</th>
+					<th scope=\"col\">IdLot</th>
+					<th scope=\"col\">Bateau</th>
+					<th scope=\"col\">Espece</th>
+					<th scope=\"col\">Taille</th>
+					<th scope=\"col\">Presentation</th>
+					<th scope=\"col\">Qualite</th>
+					<th scope=\"col\">Poids Brut</th>
+					<th scope=\"col\">Prix Depart</th>
+					<th scope=\"col\">Prix actuel</th>
+					<th scope=\"col\">Prix max</th>
+					<th scope=\"col\">Date heure début</th>
+					<th scope=\"col\">date heure fin</th>
+					<th scope=\"col\">Etat</th>
+					<th scope=\"col\"> Acheteur actuel : </th>
+					<th scope=\"col\"> Nombre de jours du lot ... </th></tr>";
 
 		foreach ($donnees as $row ) {
 			echo '<tr><td><img src="'.base_url('Images/').$row['nomEspece'].'.JPG"</img></td><td>'.$row['IdLot'].'</td><td>'.$row['nomBateau'].'</td><td>'.$row['nomEspece'].'</td><td>'.$row['specification'].'</td><td>'.$row['libellePresentation'].'</td><td>'.$row['LibelleQualite'].'</td><td>'.$row['poidsBrutLot'].'</td><td>'.$row['prixDepart'].'</td><td>'.$row['prixActuel'].'</td><td>'.$row['prixEncheresMax'].'</td><td>'.$row['dateEnchere'].'</td><td>'.$row['dateHeureFin'].'</td><td>'.$row['codeEtat'].'</td><td>'.$row['login'].'</td><td>.'.$row['nbreJourLot'].'</td></tr><br/>';
 	    		//echo  '<tr><td><img src="'.base_url('Images/').$row['nomEspece'].'.JPG"</img></td><td>'.$row['nomEspece'].'</td></tr>'.'<br/>';
 		}
-
+		?>
+				</thead>
+			</table>
+		</div>
+		<?php
 		echo "</table>";
 
 		echo "<br/><br/>";
-		// ---- Mise en place du du choix du lot et du prix ---- // 
+		// ---- Mise en place du du choix du lot et du prix ---- //
 		echo'Lot numéro : ';
 		echo '<select name="numLot">';
 		foreach ($donnees as $row ) {
@@ -116,9 +142,31 @@ else
 			echo '<input type="hidden" name="idlot" value="'.$row["IdLot"].'"></input>';
 		}*/
 
-		// ---- Mise en place de la table des enchères à venir ---- // 
+		// ---- Mise en place de la table des enchères à venir ---- //
 
-		echo "<table id='catalogue'><tr><th>Photo</th><th>IdLot</th><th>Bateau</th><th>Espece</th><th>Taille</th><th>Presentation</th><th>Qualite</th><th>Poids Brut</th><th>Prix Depart</th><th>Prix actuel</th><th>Prix max</th><th>Date heure début</th><th>date heure fin</th><th>Etat</th></tr>";
+		// ---- Mise en place du tableau n°2 (enchere à venir) en Bootstrap ---- //
+
+		?>
+
+			<div class="table-responsive">
+			  <table id='catalogue' class="table">
+					<thead>
+						<?php
+
+		echo "<tr class=\"table-primary\"><th scope=\"col\">Photo</th>
+					<th scope=\"col\">IdLot</th>
+					<th scope=\"col\">Bateau</th>
+					<th scope=\"col\">Espece</th>
+					<th scope=\"col\">Taille</th>
+					<th scope=\"col\">Presentation</th>
+					<th scope=\"col\">Qualite</th>
+					<th scope=\"col\">Poids Brut</th>
+					<th scope=\"col\">Prix Depart</th>
+					<th scope=\"col\">Prix actuel</th>
+					<th scope=\"col\">Prix max</th>
+					<th scope=\"col\">Date heure début</th>
+					<th scope=\"col\">date heure fin</th>
+					<th scope=\"col\">Etat</th></tr>";
 
 		echo "<br/>Enchères à venir : <br/>";
 
@@ -126,13 +174,17 @@ else
 			echo '<tr><td><img src="'.base_url('Images/').$row['nomEspece'].'.JPG"</img></td><td>'.$row['IdLot'].'</td><td>'.$row['nomBateau'].'</td><td>'.$row['nomEspece'].'</td><td>'.$row['specification'].'</td><td>'.$row['libellePresentation'].'</td><td>'.$row['LibelleQualite'].'</td><td>'.$row['poidsBrutLot'].'</td><td>'.$row['prixDepart'].'</td><td>'.$row['prixActuel'].'</td><td>'.$row['prixEncheresMax'].'</td><td>'.$row['dateEnchere'].'</td><td>'.$row['dateHeureFin'].'</td><td>'.$row['codeEtat'].'</td></tr><br/>' ;
 		}
 }
-
+?>
+		</thead>
+	</table>
+</div>
+<?php
 /*foreach ($retourneDateE as $row){
 	$dateDuJour = date('Y-m-d');
 	$macouille = $row['dateEnchere'];
     $dateActuelle = strtotime($dateDuJour);
   	$dateEnchere = strtotime($macouille);
-  	$gmdate1 = ceil(abs($dateEnchere - $dateActuelle) / 86400); // ---- AFFICHE 31, c'est OK pour lot 1 ----- 
+  	$gmdate1 = ceil(abs($dateEnchere - $dateActuelle) / 86400); // ---- AFFICHE 31, c'est OK pour lot 1 -----
   	echo $macouille;
 } */
 
