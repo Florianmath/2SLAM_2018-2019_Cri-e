@@ -6,7 +6,7 @@ body, html {
 }
 
 body {
-  font-family: cursive; 
+  font-family: cursive;
 }
 
 a, a:hover {
@@ -118,16 +118,17 @@ a, a:hover {
 /* Pour le tableau                                 */
 /*=====================================================  */
 
-#catalogue
+/* #catalogue
 {
     border: medium solid black;
     border-collapse: collapse;
     width: auto;
     margin: auto; /*Pour centrer le tableau */
-
+/*
 }
-
+/*
 #catalogue td, th /* Mettre une bordure sur les td ET les th */
+/*
 {
 
     border: 1px solid black;
@@ -135,22 +136,27 @@ a, a:hover {
 }
 
 /*Pour la couleur du tableau*/
+/*
 #catalogue th
 {
     font-family: monospace;
     border: thin solid black;
     width: auto;/*Pour la taille des th*/
+    /*
     padding: 5px; /*Espace dans les carées*/
+    /*
     background-color: rgb(170,217,255); /* Le fond du tableau sera rouge claire */
+    /*
     color: black; /* Le tableau seront écrit en noir  */
     /*background-image: url(sky.jpg);*/ /*Pour l'mage de fond */
+    /*
 }
 
 
-
+/*
 #catalogue td
 {
-    text-align: center; /*Pour centrer le texte du tableau */
+    text-align: center; /*Pour centrer le texte du tableau *//*
     font-family: sans-serif;
     border: thin solid black;
     width: auto;
@@ -158,25 +164,26 @@ a, a:hover {
     text-align: center;
     background-color: #ffffff;
 }
-
+/*
 table
 {
     text-align: center;
     position: top;
 }
 
-
+/*
 body
 {
   text-align: center ;
   min-width: 700px;
   margin: auto;/*Pour centrer automatiquement*/
-    
+  /*
+
 }
 
 label
 {
   width: 10%;
   float: center-left;
-  
-}
+
+} */
