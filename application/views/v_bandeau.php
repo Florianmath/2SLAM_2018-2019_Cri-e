@@ -14,23 +14,23 @@
 
 				<!---->
 
-					<a href ="<?php echo site_url ('utilisateur/contenu/catalogue'); ?>"id="logoPoisson">Les poissons</a>
+					<a href ="<?php echo site_url ('utilisateur/contenu/catalogue'); ?>"id="logoPoisson">Poissons</a>
 
-					
+
 
 				<!---->
 				<?php if (!isset($_SESSION['login']) && !isset($_SESSION['pwd']))
 				{ ?>
 
-	        		<a href ="<?php echo site_url ('utilisateur/contenu/connecter'); ?>" id="logoSeCo">Se connecter</a>
+	        		<a href ="<?php echo site_url ('utilisateur/contenu/connecter'); ?>" id="logoSeCo">Connexion</a>
 
 
-	    
+
 
 
 					<a href ="<?php echo site_url ('utilisateur/contenu/admin'); ?>"id= "logoInscription">S'inscrire</a>
 
-					
+
 
 
 
@@ -43,25 +43,27 @@
 
 						<a href ="<?php echo site_url ('utilisateur/contenu/administrer'); ?>"id="logoAdministrer">Administrer</a>
 
-						<a href ="<?php echo site_url ('utilisateur/contenu/ajouter'); ?>"id="logoAddDonnees">Ajouter des données</a>
+						<a href ="<?php echo site_url ('utilisateur/contenu/ajouter'); ?>"id="logoAddDonnees">Données</a>
 
-						<a href ="<?php echo site_url ('utilisateur/contenu/chat'); ?>" id="logoChat">Le chat</a>
-						
+						<a href ="<?php echo site_url ('utilisateur/contenu/chat'); ?>" id="logoChat">Chat</a>
 
-
-
+						<a href ="<?php echo site_url ('utilisateur/contenu/histo'); ?>" id="logoHisto">Historique</a>
 
 
-						<a href ="<?php echo site_url ('utilisateur/contenu/deconnecter'); ?>">Se Deconnecter</a>
+
+
+
+
+						<a href ="<?php echo site_url ('utilisateur/contenu/deconnecter'); ?>">Deconnexion</a>
 
 
 					<?php }
 					else
 					{ ?>
-						<a href ="<?php echo site_url ('utilisateur/contenu/panier'); ?>" id="logoPanier">Voir mon panier</a>
-						<a href ="<?php echo site_url ('utilisateur/contenu/chat'); ?>" id="logoChat" >Le chat</a>
+						<a href ="<?php echo site_url ('utilisateur/contenu/panier'); ?>" id="logoPanier">Panier</a>
+						<a href ="<?php echo site_url ('utilisateur/contenu/chat'); ?>" id="logoChat" >Chat</a>
 						<a href ="<?php echo site_url ('utilisateur/contenu/monCompte'); ?>"id ="logoCompte">Mon compte</a>
-						<a href ="<?php echo site_url ('utilisateur/contenu/deconnecter'); ?>">Se Deconnecter</a>
+						<a href ="<?php echo site_url ('utilisateur/contenu/deconnecter'); ?>">Deconnexion</a>
 					<?php } ?>
 
 				<?php } ?>

@@ -14,39 +14,27 @@ if ($_SESSION['login'] == 'administrateur') // sécuriter suplémentaire
 //	echo "<br/>Comptes administrateurs : <br/>";
 
 //	echo "<br/><table id='catalogue'><tr><th>Administrateurs</th></tr>";
-// ---- VA CHERCHER LES COMPTES ADMINS (il n'y en a qu'un) ---- // 
+// ---- VA CHERCHER LES COMPTES ADMINS (il n'y en a qu'un) ---- //
 	foreach ($compte_admin as $row ) {
 			?>
-			<div class="table-responsive">
+			<!-- <div class="table-responsive">
 			  <table id='catalogue' class="table">
 					<thead>
 			<?php
 			echo "<tr class=\"table-primary\"><th scope=\"col\">Comptes administrateurs :</th></tr>";
-			echo '<tr><td>'.$row['login'].'</td></tr>';   
+			echo '<tr><td>'.$row['login'].'</td></tr>';
 	}
 
 	?>
 		</thead>
 	</table>
-	</div>
+	</div> -->
 	<?php
 
 	//echo "<br/><table id='catalogue'><tr><th>Utilisateurs</th></tr>";
-// ---- VA CHERCHER TOUS LES COMPTES UTILISATEURS ---- // 
+// ---- VA CHERCHER TOUS LES COMPTES UTILISATEURS ---- //
 	?>
-	<div class="table-responsive">
-			  <table id='catalogue' class="table">
-					<thead>
-	<?php
-	echo "<tr class=\"table-primary\"><th scope=\"col\">Comptes Utilisateurs :</th></tr>";	
-	foreach ($compte_utilisateur as $row ) {
 
-		echo '<tr><td>'.$row['login'].'</td></tr>';   
-	}
-	?>
-		</thead>
-	</table>
-	</div>
 	<?php
 
 	?>
@@ -54,7 +42,7 @@ if ($_SESSION['login'] == 'administrateur') // sécuriter suplémentaire
 	  <table id='catalogue' class="table">
 			<thead>
 				<?php
-	
+
 	echo "<tr class=\"table-primary\"><th scope=\"col\">Photo</th>
 				<th scope=\"col\">IdLot</th>
 				<th scope=\"col\">Bateau</th>
@@ -69,20 +57,18 @@ if ($_SESSION['login'] == 'administrateur') // sécuriter suplémentaire
 				<th scope=\"col\">Date heure début</th>
 				<th scope=\"col\">date heure fin</th>
 				<th scope=\"col\">Etat</th>
-				<th scope=\"col\">Acheteur</th></tr>";	
-				
-// ---- VA AFFICHER TOUTES LES ENCHERES TERMINEES (avec acheteur " a " uniquement car bug ) ---- // 
-	echo "===========================";
+				<th scope=\"col\">Acheteur</th></tr>";
+
+// ---- VA AFFICHER TOUTES LES ENCHERES TERMINEES (avec acheteur " a " uniquement car bug ) ---- //
 	echo "<br/> Enchères terminées :";
 	echo "<br/>";
-	echo "============================";
 	?>
 
 		<?php
 
 		foreach ($enchereterminee as $row){
 		//	echo '<form method="get" action="<?php echo site_url ("utilisateur/suppressionLot")">';
-			echo '<tr><td><img src="'.base_url('Images/').$row['nomEspece'].'.JPG"</img></td><td>'.$row['IdLot'].'</td><td>'.$row['nomBateau'].'</td><td>'.$row['nomEspece'].'</td><td>'.$row['specification'].'</td><td>'.$row['libellePresentation'].'</td><td>'.$row['LibelleQualite'].'</td><td>'.$row['poidsBrutLot'].'</td><td>'.$row['prixDepart'].'</td><td>'.$row['prixActuel'].'</td><td>'.$row['prixEncheresMax'].'</td><td>'.$row['dateEnchere'].'</td><td>'.$row['dateHeureFin'].'</td><td>'.$row['codeEtat'].'</td><td>'.$row['login'].'</td></tr><br/>' ;
+			echo '<tr><td><img src="'.base_url('Images/').$row['nomEspece'].'.PNG"</img></td><td>'.$row['IdLot'].'</td><td>'.$row['nomBateau'].'</td><td>'.$row['nomEspece'].'</td><td>'.$row['specification'].'</td><td>'.$row['libellePresentation'].'</td><td>'.$row['LibelleQualite'].'</td><td>'.$row['poidsBrutLot'].'</td><td>'.$row['prixDepart'].'</td><td>'.$row['prixActuel'].'</td><td>'.$row['prixEncheresMax'].'</td><td>'.$row['dateEnchere'].'</td><td>'.$row['dateHeureFin'].'</td><td>'.$row['codeEtat'].'</td><td>'.$row['login'].'</td></tr><br/>' ;
 		//	echo "</form>";
 		}
 
@@ -99,22 +85,22 @@ if ($_SESSION['login'] == 'administrateur') // sécuriter suplémentaire
 	}
 ?>
 
-	<form method="get" action="<?php echo site_url ('utilisateur/suppressionLot'); ?>">
+	<form method="get" action="<?php echo site_url ('utilisateur/refusLot'); ?>">
 		<p>
-			
+
                     <select name="IdLot">
                     <?php
                     foreach ($recupLot as $row) {
                         echo '<option value='.$row["IdLot"].'>'.$row["IdLot"].'</option>';
                     }?>
                     </select>&nbsp &nbsp
-            <input class="btn btn-large btn-primary" type="submit" value="Suppression" /> 
+            <input class="btn btn-large btn-primary" type="submit" value="Suppression" />
        </p>
     </form>
 
-    Création d'une nouvelle facture : 
+    Accepter :
 
-    <form method="post" action ="<?php echo site_url ('utilisateur/facture'); ?>">
+    <form method="get" action ="<?php echo site_url ('utilisateur/validationLot'); ?>">
     	<p>
     		 <br/>
     		 	    <select name="IdLot">
@@ -124,13 +110,13 @@ if ($_SESSION['login'] == 'administrateur') // sécuriter suplémentaire
                     }?>
                     </select>&nbsp &nbsp
 
-                    <label for="IdFacture">Identifiant de cette facture: </label>
-                    <input type="text" name="IdFacture"/> &nbsp &nbsp
+                    <!-- <label for="IdFacture">Identifiant de cette facture: </label>
+                    <input type="text" name="IdFacture"/> &nbsp &nbsp -->
                  <!--   <label for="libelleFacture">Libelle de cette facture: </label>
                     <input type="text" name="libelleFacture"/> &nbsp &nbsp-->
 
 
-                <input class="btn btn-large btn-primary" type="submit" name="Valider" value="Valider" /> 
+                <input class="btn btn-large btn-primary" type="submit" name="Valider" value="Valider" />
     </p>
 </form>
 
@@ -152,7 +138,7 @@ if ($_SESSION['login'] == 'administrateur') // sécuriter suplémentaire
                    <!-- </select>&nbsp &nbsp
 
 
-                <input class="btn btn-large btn-primary" type="submit" name="Valider" value="Valider" /> 
+                <input class="btn btn-large btn-primary" type="submit" name="Valider" value="Valider" />
     </p>
 </form>-->
 
@@ -160,22 +146,12 @@ if ($_SESSION['login'] == 'administrateur') // sécuriter suplémentaire
 
 
     		<!--<select name="IdLot">-->
-                
+
                  <!---   foreach ($recupLot as $row) {
                         echo '<option value='.$row["IdLot"].'>'.$row["IdLot"].'</option>';
                     }?>
                     </select>&nbsp &nbsp*
-            
+
         </p>
     </form>
     <br>
-
-		
-			
-		
-	
-
-
-
-
-

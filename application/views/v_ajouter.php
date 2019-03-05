@@ -103,7 +103,7 @@ echo validation_errors(); ?> </div>
                     <label for="IdLot">L'Id du lot  </label>
                     <input type="text" name="IdLot"/> &nbsp &nbsp-->
 
-                    Enregistrer l'espèce : 
+                    Enregistrer l'espèce :
 
                     <select name="IdEspece">
                     <?php
@@ -112,7 +112,7 @@ echo validation_errors(); ?> </div>
                     }?>
                     </select>&nbsp &nbsp
 
-                    Enregistrer un bateau : 
+                    Enregistrer un bateau :
 
                     <select name="IdBateau">
                     <?php
@@ -121,7 +121,7 @@ echo validation_errors(); ?> </div>
                     }?>
                     </select>&nbsp &nbsp
 
-                    Enregistrer date de la pèche : 
+                    Enregistrer date de la pèche :
 
                     <select name="datePeche">
                     <?php
@@ -130,7 +130,16 @@ echo validation_errors(); ?> </div>
                     }?>
                     </select>&nbsp &nbsp
 
-                    Enregistrer la taille : 
+                    Enregistrer la qualité :
+
+                    <select name="IdQualite">
+                    <?php
+                    foreach ($qualite as $row) {
+                        echo '<option value='.$row["IdQualite"].'>'.$row["IdQualite"].'</option>';
+                    }?>
+                    </select>&nbsp &nbsp
+
+                    Enregistrer la taille :
 
                     <select name="IdTaille">-->
                     <?php
@@ -139,7 +148,7 @@ echo validation_errors(); ?> </div>
                     }?>
                     </select>&nbsp &nbsp
 
-                     Enregistrer la présentation : 
+                     Enregistrer la présentation :
 
                     <select name="IdPresentation">
                     <?php
@@ -148,23 +157,23 @@ echo validation_errors(); ?> </div>
                     }?>
                     </select>&nbsp &nbsp
 
-                    Enregistrer le bac : 
+                    Enregistrer le bac :
 
-                    <select name="IdBac"> 
+                    <select name="IdBac">
                     <?php
                     foreach ($bac as $row) {
                         echo '<option value='.$row["IdBac"].'>'.$row["IdBac"].'</option>';
                     }?>
                     </select>&nbsp &nbsp
 
-                   Acheteur par défaut (à ne pas remplir) : 
+                   <!-- Acheteur par défaut (à ne pas remplir) :  -->
 
-                    <select name="IdAcheteur">
+                    <!-- <select name="IdAcheteur"> -->
                     <?php
-                    foreach ($acheteur as $row) {
-                        echo '<option value='.$row["IdAcheteur"].'>'.$row["IdAcheteur"].'</option>';
-                    }?>
-                    </select>&nbsp &nbsp
+                    // foreach ($acheteur as $row) {
+                    //     echo '<option value='.$row["IdAcheteur"].'>'.$row["IdAcheteur"].'</option>';
+                    // }?>
+                    <!-- </select>&nbsp &nbsp -->
 
                      <select name="codeEtat">
                     <?php
@@ -175,7 +184,7 @@ echo validation_errors(); ?> </div>
                     </select>&nbsp &nbsp
 
 
-                    <!-- Enregistrer la qualité : 
+                    <!-- Enregistrer la qualité :
 
                     <select name="IdQualite">-->
                     <?php
@@ -217,4 +226,3 @@ echo validation_errors(); ?> </div>
                     <input class="btn btn-large btn-primary" type="reset" value="Effacer" />
                   </p>
 </form>
-

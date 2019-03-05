@@ -34,15 +34,15 @@ public function contenu($id) {
  // $gmdate1 = round((strtotime($dateActuelle) - strtotime($dateEnchere))/(86400)-1); //LIGNE IMPORTANTE A PAS DELETE
 
     $etatq0 = NULL ;
-    $etatq = 0; // Tous les paliers de qualité que l'on s'impose lors de l'update. 
+    $etatq = 0; // Tous les paliers de qualité que l'on s'impose lors de l'update.
     $etatq2 = 5;
     $etatq3 = 10;
     $etatq4 = 15;
 
    //$taille1 = 10
     //$taille2 = 20;
- 
- 
+
+
 	switch ($id) {
 		case 'catalogue':
 			$this->load->view('v_bandeau');
@@ -53,10 +53,10 @@ public function contenu($id) {
     $this->main_model->etatEnchere($gmdate);
     $data['retourneDateE']=$this->main_model->afficheDateEnchere();
 
-   // $this->main_model->nombreLot($gmdate1);  // --- > je travail dessus actuellement 
+   // $this->main_model->nombreLot($gmdate1);  // --- > je travail dessus actuellement
 
 
-    $this->main_model->etatQualiteOriginal($etatq); // Fonctions d'états fonctionnelles 
+    $this->main_model->etatQualiteOriginal($etatq); // Fonctions d'états fonctionnelles
     $this->main_model->etatQualiteBonne($etatq, $etatq2);
     $this->main_model->etatQualiteMoyenne($etatq2, $etatq3);
     $this->main_model->etatQualiteMauvaise($etatq3, $etatq4);
@@ -77,8 +77,11 @@ public function contenu($id) {
 		case 'panier':
 
 			$this->load->view('v_bandeau');
+      $data['enchereacceptee']=$this->main_model->afficheEnchereAcceptee();
       $this->load->view('v_Identitee');
-			$this->load->view('v_panier');
+
+			$this->load->view('v_panier', $data);
+
      // $this->load->view('chat');
      // $data['recupMessage']=$this->main_model->recupMessage();
      // $data['acheteur']=$this->main_model->recupLogin();
@@ -95,7 +98,7 @@ public function contenu($id) {
 
 		case 'connection':
 
-           $loginSaisie =$this->input->post('login');
+           $loginSaisie = $this->input->post('login');
            $pwdSaisie = $this->input->post('pwd');
     		   $data['tab']=$this->main_model->userLogin($loginSaisie,$pwdSaisie);
 		   if (count($data['tab']) > 0)
@@ -130,10 +133,18 @@ public function contenu($id) {
 
             $data['enchereterminee']=$this->main_model->afficheEnchereTerminee();
       //      $data['libelleFacture']=$this->main_model->recupLibelleFacture();
-           // $data['destruction']=$this->main_model->destructionLot();            
+           // $data['destruction']=$this->main_model->destructionLot();
             $data['recupLot']=$this->main_model->recupLot();
             $this->load->view('v_administrer',$data);
             break;
+
+        case 'histo':
+          $data['enchereacceptee']=$this->main_model->afficheEnchereAcceptee();
+          $this->load->view('v_entete');
+          $this->load->view('v_bandeau');
+          $this->load->view('v_histo', $data);
+          break;
+
 		case 'deconnecter':
 			session_unset();
 			session_destroy();
@@ -171,7 +182,7 @@ public function contenu($id) {
         //$this->load->view('v_entete');
   //      $this->load->view('v_entete');
   //      $this->load->view('v_bandeau');
-        
+
         $data['recupMessage']=$this->main_model->recupMessage();
         $data['acheteur']=$this->main_model->recupLogin();
         $this->load->view('v_bandeau');
@@ -179,11 +190,11 @@ public function contenu($id) {
         $this->load->view('chat', $data);
       break;
     case 'monCompte':
-      
+
       $this->load->view('v_bandeau');
       $data['resultats']=$this->main_model->afficheInfoUtilisateur();
       $this->load->view('v_monCompte', $data);
-      
+
       break;
     case 'modificationAdresse':
 
@@ -271,7 +282,7 @@ public function contenu($id) {
 
     $this->main_model->nombreLot($gmdate1, $IdLot);
     $gmdate1 = $this->input->post('nbreJourLot');
-    $IdLot = $this->input->post('IdLot');                                     
+    $IdLot = $this->input->post('IdLot');
 
     $data['retourneDateE']=$this->main_model->afficheDateEnchere();
   }
@@ -302,7 +313,7 @@ public function contenu($id) {
     $mesMessages = array(
       //'id' => $this->input->post('id'),
       'message' => $this->input->post('message'),
-      'dateHeure' => date('Y-m-d H:i:s'), // insert avec une constante 
+      'dateHeure' => date('Y-m-d H:i:s'), // insert avec une constante
      // 'IdAcheteur' => $this->input->post('IdAcheteur')
        );
 
@@ -321,13 +332,13 @@ public function contenu($id) {
     $this->load->view('v_entete');
     $this->load->view('v_bandeau');
     $this->load->view('v_enregistreChat');
-    
-   
+
+
   }
 
     public function facture()
   {
-    
+
     $this->load->helper(array('form', 'url'));
 
     $this->load->database();
@@ -376,8 +387,8 @@ public function contenu($id) {
     $this->load->view('v_entete');
     $this->load->view('v_bandeau');
     $this->load->view('v_enregistreChat');
-    
-   
+
+
   }*/
 //DEUXIEME VERSION OK
  /* public function getMessage()
@@ -413,8 +424,8 @@ public function contenu($id) {
     $this->load->view('v_entete');
     $this->load->view('v_bandeau');
     $this->load->view('v_enregistreChat');
-    
-   
+
+
   }*/
 
 
@@ -476,10 +487,10 @@ public function contenu($id) {
             $this->load->view('v_bandeau');
             $this->load->view('v_enregistrerModificationCompte');
 
-           
+
           $rue = $this->input->post('rue');
 
-            
+
           $data['resultats']=$this->main_model->afficheInfoUtilisateur();
 
           $this->main_model->enregistreNouvelleRue($rue);
@@ -499,13 +510,13 @@ public function contenu($id) {
             $this->load->view('v_bandeau');
             $this->load->view('v_enregistrerModificationCompte');
 
-           
+
           $numRue = $this->input->post('numRue');
 
           $data['resultats']=$this->main_model->afficheInfoUtilisateur();
 
           $this->main_model->enregistreNouvelleNumRue($numRue);
-          
+
           //chargement de la View
           $this->load->view('v_monCompte', $data);
           $this->load->view('v_finPage');
@@ -521,13 +532,13 @@ public function contenu($id) {
             $this->load->view('v_bandeau');
             $this->load->view('v_enregistrerModificationCompte');
 
-           
+
           $ville = $this->input->post('ville');
 
           $data['resultats']=$this->main_model->afficheInfoUtilisateur();
 
           $this->main_model->enregistreNouvelleVille($ville);
-          
+
           //chargement de la View
            $this->load->view('v_monCompte', $data);
           $this->load->view('v_finPage');
@@ -543,13 +554,13 @@ public function contenu($id) {
             $this->load->view('v_bandeau');
             $this->load->view('v_enregistrerModificationCompte');
 
-           
+
           $codePostal = $this->input->post('codePostal');
 
           $data['resultats']=$this->main_model->afficheInfoUtilisateur();
 
           $this->main_model->enregistreNouvelleCodepostal($codePostal);
-          
+
           //chargement de la View
            $this->load->view('v_monCompte', $data);
           $this->load->view('v_finPage');
@@ -565,20 +576,20 @@ public function contenu($id) {
             $this->load->view('v_bandeau');
             $this->load->view('v_enregistrerModificationCompte');
 
-           
+
           $numHabilitation = $this->input->post('numHabilitation');
 
           $data['resultats']=$this->main_model->afficheInfoUtilisateur();
 
           $this->main_model->enregistreNouvelleNumHabilitation($numHabilitation);
-          
+
           //chargement de la View
            $this->load->view('v_monCompte', $data);
           $this->load->view('v_finPage');
   }
 
 
-  public function enregistreEspece() 
+  public function enregistreEspece()
   {
     $this->load->helper(array('form', 'url'));
     $this->load->library('form_validation');
@@ -714,8 +725,8 @@ public function contenu($id) {
     }
 
   }
- 
-  public function suppressionLot($unIdLot)
+
+  public function suppressionLot()
   {
 
     $this->load->database();
@@ -723,15 +734,15 @@ public function contenu($id) {
     $this->load->helper('form');
     $this->load->model('main_model');
 
-   $unIdlot = $this->input->get('IdLot');
+    $unIdlot = $this->input->get('IdLot');
     $this->main_model->suppressionLot($unIdlot);
     $this->load->view('v_entete');
     $this->load->view('v_bandeau');
     $this->load->view('v_enregistrerBateau');
     $this->load->view('v_finPage');
    // $this->load->view('v_administrer');
-    
-     
+
+
      $data['recupLot']=$this->main_model->recupLot();
   }
   public function validationLot()
@@ -742,12 +753,12 @@ public function contenu($id) {
     $this->load->helper('form');
     $this->load->model('main_model');
 
-    $facture = array(
-      'IdFacture' => $this->input->post('IdFacture'),
-      'libelleFacture' => $this->input->post('libelleFacture')
-      );
-
-    $this->main_model->validationLot($facture);
+    // $facture = array(
+    //   'IdFacture' => $this->input->post('IdFacture'),
+    //   'libelleFacture' => $this->input->post('libelleFacture')
+    //   );
+    $unIdlot = $this->input->get('IdLot');
+    $this->main_model->validationLot($unIdlot);
     $this->load->view('v_entete');
     $this->load->view('v_bandeau');
     $this->load->view('v_enregistrerBateau');
@@ -770,9 +781,9 @@ public function contenu($id) {
     $this->form_validation->set_rules('IdPresentation', "Id la présentation", 'required');
     $this->form_validation->set_rules('IdBac', "Id du bac", 'required');
   //  $this->form_validation->set_rules('IdAcheteur', "Id de l'acheteur", 'required');
-  //   $this->form_validation->set_rules('IdQualite', "Id de la qualité", 'required');
+    $this->form_validation->set_rules('IdQualite', "Id de la qualité", 'required');
   //  $this->form_validation->set_rules('IdFacture', 'ID de la facture', 'required');
-    
+
     $this->form_validation->set_rules('poidsBrutLot', 'Le poids brut', 'required');
     $this->form_validation->set_rules('prixPlancher', 'Le prix plancher', 'required');
     $this->form_validation->set_rules('prixDepart', 'Le prix départ', 'required');
@@ -831,7 +842,7 @@ public function contenu($id) {
             'IdPresentation' => $this->input->post('IdPresentation'),
             'IdBac' => $this->input->post('IdBac'),
         //    'IdAcheteur' => $this->input->post('IdAcheteur'),
-        //    'IdQualite ' => $this->input->post('IdQualite'),
+            'IdQualite ' => $this->input->post('IdQualite'),
             'poidsBrutLot' => $this->input->post('poidsBrutLot'),
             'prixPlancher' => $this->input->post('prixPlancher'),
             'prixDepart' => $this->input->post('prixDepart'),

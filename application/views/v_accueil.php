@@ -29,10 +29,8 @@
 				<h2 id="titre">DE LA MER AU PORT, ET DU PORT A L'ASSIETTE !</h2>
 				</br>
 				<input class="btn btn-custom" type="button" value="Voir nos produits !" onclick="document.location.href='<?php echo site_url ('utilisateur/contenu/catalogue'); ?>';">
-			</div>				
+			</div>
 		</section>
-
-			<P> Ismaelito</P>
 
 
 

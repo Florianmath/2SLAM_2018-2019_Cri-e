@@ -38,12 +38,19 @@ class Main_model extends CI_Model {
 
 
 
-   /* FONCTION D'AFFICHAGE : Permet d'afficher dans l'onglet Administrateur les enchères terminées : même chose que les autres sauf qu'on remplace le codeEtat */ 
+   /* FONCTION D'AFFICHAGE : Permet d'afficher dans l'onglet Administrateur les enchères terminées : même chose que les autres sauf qu'on remplace le codeEtat */
     public function afficheEnchereTerminee(){
         $sql16=$this->db->conn_id->prepare ("SELECT DISTINCT login, IdLot, nomBateau, nomEspece, specification, libellePresentation, LibelleQualite, poidsBrutLot, prixDepart, prixEncheresMax, dateEnchere, dateHeureFin, codeEtat, prixActuel FROM lot, bateau, espece, peche, taille, presentation, qualite, acheteur WHERE acheteur.IdAcheteur = lot.IdAcheteur AND bateau.IdBateau = lot.IdBateau AND espece.IdEspece = lot.IdEspece AND taille.IdTaille = lot.IdTaille AND presentation.IdPresentation = lot.IdPresentation AND qualite.IdQualite = lot.IdQualite AND codeEtat ='terminé' AND IdFacture = 0");
         $sql16->execute();
         $enchereterminee=$sql16->fetchAll();
         return $enchereterminee;
+    }
+
+    public function afficheEnchereAcceptee(){
+        $sql165=$this->db->conn_id->prepare ("SELECT DISTINCT login, IdLot, nomBateau, nomEspece, specification, libellePresentation, LibelleQualite, poidsBrutLot, prixDepart, prixEncheresMax, dateEnchere, dateHeureFin, codeEtat, prixActuel FROM lot, bateau, espece, peche, taille, presentation, qualite, acheteur WHERE acheteur.IdAcheteur = lot.IdAcheteur AND bateau.IdBateau = lot.IdBateau AND espece.IdEspece = lot.IdEspece AND taille.IdTaille = lot.IdTaille AND presentation.IdPresentation = lot.IdPresentation AND qualite.IdQualite = lot.IdQualite AND codeEtat ='accepté' ");
+        $sql165->execute();
+        $enchereacceptee=$sql165->fetchAll();
+        return $enchereacceptee;
     }
 
     public function afficheAdministrateurs(){
@@ -60,7 +67,7 @@ class Main_model extends CI_Model {
         //$this->db=null;
         return $compte_admin;
     }
-/* FONCTION D'AFFICHAGE : Permet d'afficher les utilisateurs : même chose qu'affiche administrateur, on met juste un where pour tout afficher sauf les admins. ATTENTION : si on met en place un nouveau choix qui n'est pas ni administrateur ni utilisateur, cela va l'afficher, à changer si cela arrive */ 
+/* FONCTION D'AFFICHAGE : Permet d'afficher les utilisateurs : même chose qu'affiche administrateur, on met juste un where pour tout afficher sauf les admins. ATTENTION : si on met en place un nouveau choix qui n'est pas ni administrateur ni utilisateur, cela va l'afficher, à changer si cela arrive */
 
     public function afficheUtilisateur(){
         $sql18=$this->db->conn_id->prepare ("SELECT DISTINCT login FROM acheteur WHERE login <> 'administrateur' AND login <> 'Personne'");
@@ -149,6 +156,14 @@ class Main_model extends CI_Model {
         return $recupLot;
     }
 
+    // public function recupLotAccepte()
+    // {
+    //     $sql21=$this->db->conn_id->prepare("SELECT lot.IdLot FROM lot WHERE codeEtat = 'accepté' ");
+    //     $sql21->execute();
+    //     $recupLot = $sql21->fetchAll();
+    //     return $recupLotAccepte;
+    // }
+
     public function recupFacture()
     {
         $sql18=$this->db->conn_id->prepare("SELECT lot.IdFacture FROM lot");
@@ -176,7 +191,7 @@ class Main_model extends CI_Model {
         $retourneDateE=$sql22->fetchAll();
 
         $dateDuJour = date('Y-m-d');
-        $dateActuelle = strtotime($dateDuJour); 
+        $dateActuelle = strtotime($dateDuJour);
 
             foreach ($retourneDateE as $row)
              {
@@ -187,22 +202,22 @@ class Main_model extends CI_Model {
                 $this->db->where('IdLot', $getLot);
                 $this->db->update('lot');
              }
-              
-            
+
+
         }
-        
-         
-        
 
-        
 
-        
-       
-         // ---- AFFICHE 31, c'est OK pour lot 1 ----- 
-        
-    
-        
-        
+
+
+
+
+
+
+         // ---- AFFICHE 31, c'est OK pour lot 1 -----
+
+
+
+
 
 
     public function lesreferences()
@@ -288,8 +303,8 @@ class Main_model extends CI_Model {
 
 
 
-    
-    
+
+
 
     public function enregistrePrix($nouveauPrix, $idlot)
     {
@@ -311,7 +326,7 @@ class Main_model extends CI_Model {
     }
 
 
-  
+
 
     public function recupEnchere()
     {
@@ -324,11 +339,12 @@ class Main_model extends CI_Model {
     }
 
 /* ----- FONCTIONS ETAT : Permettent de mettre en place la qualité en direct ----- */
-    
+
       public function etatEnchere($gmdate)
     {
       $this->db->set('codeEtat', 'terminé');
       $this->db->where('dateHeureFin <', $gmdate);
+      $this->db->where('codeEtat !=', 'accepté');
       $this->db->update('lot');
     }
 
@@ -373,11 +389,13 @@ class Main_model extends CI_Model {
         $this->db->delete('lot');
        // $this->db->insert('lot', $tab);
     }
-    
-    public function validationLot($facture)
-    {
-        $this->db->insert('facture', $facture);
 
+    public function validationLot($unIdLot)
+    {
+      $this->db->set('codeEtat', 'accepté');
+      $this->db->where('IdLot', $unIdLot);
+      $this->db->update('lot');
+        // $this->db->insert('facture', $facture);
     }
  // ----- MISE EN PLACE DU CHAT - TROISIEME VERSION OK ----- //
      public function recupMessage()
@@ -399,29 +417,29 @@ class Main_model extends CI_Model {
          //   $dateDuJour = date('Y-m-d');
             $IdAcheteur = $row->IdAcheteur;
             $this->db->set('IdAcheteur', $IdAcheteur);
-            
-        
+
+
          //   $this->db->where('id', $id);
       //      $this->db->where('id', $id);
            // $this->db->update('minichat');
-           
+
        }
        $this->db->insert('minichat', $mesMessages);
    }
 
 
-       
+
 
    public function factures($IdFacture, $idlot)
    {
-     
+
  //   $this->db->insert('facture', $IdFacture);
      $this->db->set('IdFacture', $IdFacture);
      $this->db->where('IdLot', $idlot);
      $this->db->update('lot');
 
    }
-   
+
     public function enregistreIdAcheteur($loginAcheteur, $idlot)
 {
   $this->db->select('IdAcheteur')
@@ -450,7 +468,7 @@ class Main_model extends CI_Model {
     $this->db->insert('acheteur', $mesMessages);
    }*/
 
-/* ----- MISE EN PLACE DU CHAT - PREMIERE VERSION OK ----- 
+/* ----- MISE EN PLACE DU CHAT - PREMIERE VERSION OK -----
    public function recupMessage()
    {
      $sql1=$this->db->conn_id->prepare ("SELECT pseudo, message FROM minichat ORDER BY ID ASC LIMIT 0, 10");
@@ -463,7 +481,7 @@ class Main_model extends CI_Model {
    {
     $this->db->insert('minichat', $mesMessages);
    }*/
-    
+
 // ---- AFFICHAGE DES INFOS DE L'UTILISATEUR : PAS OK ----- //
     public function afficheInfoUtilisateur()
     {
@@ -488,7 +506,7 @@ class Main_model extends CI_Model {
         $query = $this->db->get();
         return $query;*/
     // -----  TENTATIVE DE METTRE EN PLACE SYSTEME CHAT PAS TOUCHE -----  //
-  
+
    /* function add_message($message, $pseudonyme, $guide)
     {
         $data = array(
@@ -497,24 +515,24 @@ class Main_model extends CI_Model {
             'guide'      => (string) $guide,
             'timestamp' => time(),
         );
-          
+
         $this->db->insert('message', $data);
     }
- 
+
     function get_messages($timestamp)
     {
         $this->db->where('timestamp >', $timestamp);
         $this->db->order_by('timestamp', 'DESC');
-        $this->db->limit(10); 
+        $this->db->limit(10);
         $query = $this->db->get('message');
-        
+
         return array_reverse($query->result_array());
     }*/
- 
 
 
 
-    // ----- POUBELLE -----  //  
+
+    // ----- POUBELLE -----  //
 
   /*  public function relierLot($unefacture)
     {
@@ -526,7 +544,7 @@ class Main_model extends CI_Model {
         $this->db->where('IdLot', $IdLot);
         $this->db->update('lot');*/
       /*  $this->db->insert('lot', $unefacture);
-        $this->db->insert('presentation', $tab);  
+        $this->db->insert('presentation', $tab);
     }*/
 
     /*public function recupLibelleFacture()
@@ -541,7 +559,7 @@ class Main_model extends CI_Model {
     /*public function validationLot($idfacture)
     {
         $this->db->insert('facture', $idfacture);
-       
+
     }*/
 // $this->db->delete('mytable', array('id' => $id))
 

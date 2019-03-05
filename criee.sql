@@ -6,6 +6,12 @@
 -- Généré le :  mar. 05 mars 2019 à 08:53
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
+drop database if exists criee;
+
+Create database criee default character set UTF8 collate UTF8_general_ci;
+
+Use criee;
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -48,24 +54,24 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `p_indicationQualite` ()  BEGIN
 	UPDATE 	lot
     SET IdQualite = 'or'
     WHERE nbreJourLot < 0;
-    
-	UPDATE lot 
+
+	UPDATE lot
     SET IdQualite = 'bo'
     WHERE nbreJourLot > 0
-    AND nbreJourLot < 5; 
-    
-    
-    UPDATE lot 
+    AND nbreJourLot < 5;
+
+
+    UPDATE lot
     SET IdQualite = 'mo'
     WHERE nbreJourLot > 5
     AND nbreJourLot < 10;
-    
-    
-    UPDATE lot 
+
+
+    UPDATE lot
     SET IdQualite = 'ma'
     WHERE nbreJourLot > 10
     AND nbreJourLot > 15;
-    
+
 END$$
 
 DELIMITER ;
