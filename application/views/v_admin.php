@@ -1,3 +1,17 @@
+<style type="text/css">
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+           }
+#logoInscription {
+  color: #000000;
+  margin-right: 20px;
+}
+
+</style>
+
 <div class="alert alert-warning" role="alert">
 <?php echo validation_errors(); ?> </div>
 
@@ -19,19 +33,58 @@
                     <input type="text" name="rue"  />
 
                     <br />
-                    <label for="numRue">Votre numéro de rue :</label>
+                    <label for="numRue">Votre numéro de rue:</label>
                     <input type="number" name="numRue"  />
 
                     <br />
-                    <label for="ville">Votre ville:</label>
+                    <label for="ville">Votre ville :</label>
                     <input type="text" name="ville"  />
 
                     <br />
-                    <label for="codePostal">Votre code postal:</label>
+                    <label for="codePostal">Votre code postal :</label>
                     <input type="number" name="codePostal"  /><br/>
 
+                      <label>J'ai lu et j'accepte les <a href = conditions_generales> conditions d'utilisation :</a> </label> <input type="checkbox" name="cgu">
 
-                    <br /><br />
+                    <br />
+                <!---                   ---- MISE EN PLACE DES CGU ----
+echo 'Vous êtes un visiteur, pour vous connecter cliquez <a href = connecter> ici</a><br/> Pas de compte ? Pour vous inscrire cliquez <a href = admin> ici</a><br/>';
+    }
+
+
+                Le but : mettre en place des conditions d'utilisation qui, lorsque l'on clique dessus, renvoit vers une vue
+                    "v_conditions". Cette vue sera composée de règles d'utilisation du site (osef).
+                      Comment ?
+                      HTML :
+                 
+                    
+
+
+
+                      BDD :
+                      Mettre en place un nouveau champ "conditionGeneral" booléen dans une table (acheteur ?)
+                   OU Mettre en place un nouvelle table "conditions" avec "conditionsGeneral" booléen 
+                      
+                      PHP :
+                        utilisateur :
+                            Dans formulaire rajouter :
+                            $recupCgu = $_POST['cgu'];
+
+                            if(isset($_POST['cgu'])){
+                              $recupCgu = $_POST['cgu'];
+                            }
+
+
+                        model : 
+                        Ne pas toucher (récupérer via la fonction enregistreAcheteur())
+                        
+
+
+
+
+                 -->
+
+                    <br />
 
 
                     <!-- Pour les boutons-->

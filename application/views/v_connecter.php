@@ -1,4 +1,17 @@
+<style type="text/css">
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+           }
 
+#logoSeCo {
+  color: #000000;
+  margin-right: 20px;
+}
+
+</style>
 <fieldset>
 	<?php if (!isset($_SESSION['login']) && !isset($_SESSION['pwd']))
 	{?>

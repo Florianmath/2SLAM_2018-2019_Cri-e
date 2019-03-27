@@ -77,7 +77,7 @@ $db['default'] = array(
 	'dsn'	=> 'mysql:host=localhost;dbname=criee',
 	'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => 'root',
+	'password' => 'ArtemisL',
 	'database' => 'criee',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',
